@@ -1,0 +1,32 @@
+{
+  "7e1efee3e15c8e645e817dc9474937f3b28bd549fc1d03c5e0b00c64cea0601a": {
+    "source_path": "/data/source/financial_statement.html",
+    "file_hash": "7e1efee3e15c8e645e817dc9474937f3b28bd549fc1d03c5e0b00c64cea0601a",
+    "mtime": 1784796378.143446,
+    "size_bytes": 552,
+    "status": "new",
+    "output_path": "/data/processed/financial_statement.md",
+    "error": null,
+    "processed_at": "2026-07-26T21:34:18.592512+00:00"
+  },
+  "01a820cb1bf275642cb65982df5683ce45c4991893a127333c19acf3bbb704f5": {
+    "source_path": "/data/source/hr_remote_policy.txt",
+    "file_hash": "01a820cb1bf275642cb65982df5683ce45c4991893a127333c19acf3bbb704f5",
+    "mtime": 1784796378.143446,
+    "size_bytes": 877,
+    "status": "new",
+    "output_path": "/data/processed/hr_remote_policy.md",
+    "error": null,
+    "processed_at": "2026-07-26T21:34:18.594493+00:00"
+  },
+  "682ae087d94e93f5c94588cf41fd4414fa368dc06c5f232d0ddcad9ea39c8e56": {
+    "source_path": "/data/source/test.csv",
+    "file_hash": "682ae087d94e93f5c94588cf41fd4414fa368dc06c5f232d0ddcad9ea39c8e56",
+    "mtime": 1784636518.0,
+    "size_bytes": 55,
+    "status": "new",
+    "output_path": "/data/processed/test.md",
+    "error": null,
+    "processed_at": "2026-07-26T21:34:18.601658+00:00"
+  }
+}

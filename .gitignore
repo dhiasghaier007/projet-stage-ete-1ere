@@ -1,0 +1,52 @@
+# Python virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Python cache and build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Environment and secrets
+.env
+.env.*
+*.env
+secrets.json
+*.pem
+*.key
+*.crt
+
+# Node / local tooling
+node_modules/
+.DS_Store
+*.log
+
+# Project-generated data and model artifacts
+data/
+embeddings/
+*.faiss
+*.index
+*.bin
+*.pt
+*.pth
+*.safetensors
+
+# Generated RAG outputs that should not be versioned
+chunks/
+processed/
+classified/
+classified_heuristic/
+classification_eval_report.txt
+classified_metadata.json
+classified_heuristic_metadata.json
