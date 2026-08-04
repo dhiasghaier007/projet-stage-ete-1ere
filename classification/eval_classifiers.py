@@ -1,16 +1,12 @@
 #!/usr/bin/env python3
 """
-Evaluation script for classification accuracy (Stage 2 QA).
+Evaluation script for LLM classification accuracy (Stage 2 QA).
 
-Compares heuristic vs LLM classifiers on a labeled test dataset.
-Computes precision, recall, F1 across both classifiers.
-
-This ties into Stage 5 (Quality Assurance) of the pipeline.
+Runs the current LLM-only classifier on a labeled test dataset and reports
+accuracy per field.
 
 Run:
-    python eval_classifiers.py
-    python eval_classifiers.py --use_llm              # Include LLM in eval
-    python eval_classifiers.py --use_llm --verbose    # Detailed output
+    python eval_classifiers.py --verbose
 """
 
 import argparse
@@ -19,10 +15,10 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Tuple
 
-# Import classifiers from classify.py
+# Import classifier from classify.py
 import sys
 sys.path.insert(0, str(Path(__file__).parent))
-from classify import classify_document_heuristic, classify_document_litellm
+from classify import classify_document_litellm
 
 
 # ============================================================================
@@ -225,7 +221,7 @@ def evaluate_classifier(classifier_name: str, classifier_func, test_set: List[Di
             
             if verbose:
                 status = "✅" if all_match else "❌"
-                print(f"  {status} {filename:40s} | Dept: {prediction.get('department'):10s} | Type: {prediction.get('doc_type'):15s}")
+                print(f"  {status} {filename:40s} | Dept: {str(prediction.get('department') or 'None'):10s} | Type: {str(prediction.get('doc_type') or 'None'):15s}")
                 
         except Exception as e:
             results["errors"].append({
@@ -238,71 +234,45 @@ def evaluate_classifier(classifier_name: str, classifier_func, test_set: List[Di
     return results
 
 
-def format_report(results_heuristic: Dict, results_litellm: Dict = None) -> str:
+def format_report(results_litellm: Dict) -> str:
     """Format evaluation results as a readable report."""
-    
+
     report = []
     report.append("\n" + "=" * 90)
-    report.append("CLASSIFICATION ACCURACY EVALUATION".center(90))
+    report.append("LLM CLASSIFICATION ACCURACY EVALUATION".center(90))
     report.append("=" * 90 + "\n")
-    
-    # Heuristic results
-    report.append("📊 HEURISTIC CLASSIFIER (Baseline)")
+
+    report.append("🤖 LITELLM CLASSIFIER")
     report.append("-" * 90)
-    accuracy = (results_heuristic["correct"] / results_heuristic["total"]) * 100
-    report.append(f"Overall Accuracy: {accuracy:.1f}% ({results_heuristic['correct']}/{results_heuristic['total']})\n")
-    
-    for field, metrics in results_heuristic["field_accuracy"].items():
+    accuracy_llm = (results_litellm["correct"] / results_litellm["total"]) * 100
+    report.append(f"Overall Accuracy: {accuracy_llm:.1f}% ({results_litellm['correct']}/{results_litellm['total']})\n")
+
+    for field, metrics in results_litellm["field_accuracy"].items():
         field_accuracy = (metrics["correct"] / metrics["total"] * 100) if metrics["total"] > 0 else 0
         report.append(f"  {field.capitalize():15s}: {field_accuracy:5.1f}% ({metrics['correct']}/{metrics['total']})")
-    
-    report.append(f"\nConfidence (avg): {sum(p['confidence'] for p in results_heuristic['predictions']) / len(results_heuristic['predictions']):.2f}")
-    report.append(f"Confidence (min): {min(p['confidence'] for p in results_heuristic['predictions']):.2f}")
-    report.append(f"Confidence (max): {max(p['confidence'] for p in results_heuristic['predictions']):.2f}")
-    
-    # LiteLLM results (if available)
-    if results_litellm:
-        report.append("\n" + "=" * 90)
-        report.append("🤖 LITELLM CLASSIFIER (OpenAI/Ollama/etc)")
-        report.append("-" * 90)
-        accuracy_llm = (results_litellm["correct"] / results_litellm["total"]) * 100
-        report.append(f"Overall Accuracy: {accuracy_llm:.1f}% ({results_litellm['correct']}/{results_litellm['total']})\n")
-        
-        for field, metrics in results_litellm["field_accuracy"].items():
-            field_accuracy = (metrics["correct"] / metrics["total"] * 100) if metrics["total"] > 0 else 0
-            report.append(f"  {field.capitalize():15s}: {field_accuracy:5.1f}% ({metrics['correct']}/{metrics['total']})")
-        
-        report.append(f"\nConfidence (avg): {sum(p['confidence'] for p in results_litellm['predictions']) / len(results_litellm['predictions']):.2f}")
-        report.append(f"Confidence (min): {min(p['confidence'] for p in results_litellm['predictions']):.2f}")
-        report.append(f"Confidence (max): {max(p['confidence'] for p in results_litellm['predictions']):.2f}")
-        
-        # Comparison
-        report.append("\n" + "=" * 90)
-        report.append("📈 COMPARISON")
-        report.append("-" * 90)
-        diff = accuracy_llm - accuracy
-        symbol = "▲" if diff > 0 else "▼" if diff < 0 else "→"
-        report.append(f"  Heuristic vs LiteLLM: {symbol} {abs(diff):.1f}pp (LiteLLM is {'better' if diff > 0 else 'worse' if diff < 0 else 'equal'})")
-    
-    # Error analysis
+
+    report.append(f"\nConfidence (avg): {sum(p['confidence'] for p in results_litellm['predictions']) / len(results_litellm['predictions']):.2f}")
+    report.append(f"Confidence (min): {min(p['confidence'] for p in results_litellm['predictions']):.2f}")
+    report.append(f"Confidence (max): {max(p['confidence'] for p in results_litellm['predictions']):.2f}")
+
     report.append("\n" + "=" * 90)
-    report.append("⚠️  MISCLASSIFICATIONS (Heuristic)")
+    report.append("⚠️  MISCLASSIFICATIONS")
     report.append("-" * 90)
-    
-    if results_heuristic["errors"]:
-        for error in results_heuristic["errors"][:5]:  # Show first 5
+
+    if results_litellm["errors"]:
+        for error in results_litellm["errors"][:5]:
             if "field" in error:
                 report.append(f"  {error['file']:40s} | {error['field']:12s}: expected '{error['expected']}' got '{error['predicted']}'")
             else:
                 report.append(f"  {error['file']:40s} | ERROR: {error.get('error', 'Unknown')}")
-        
-        if len(results_heuristic["errors"]) > 5:
-            report.append(f"  ... and {len(results_heuristic['errors']) - 5} more errors")
+
+        if len(results_litellm["errors"]) > 5:
+            report.append(f"  ... and {len(results_litellm['errors']) - 5} more errors")
     else:
         report.append("  None! Perfect score.")
-    
+
     report.append("\n" + "=" * 90)
-    
+
     return "\n".join(report)
 
 
@@ -311,39 +281,25 @@ def format_report(results_heuristic: Dict, results_litellm: Dict = None) -> str:
 # ============================================================================
 
 def main():
-    parser = argparse.ArgumentParser(description="Evaluate classifiers (heuristic vs LiteLLM)")
-    parser.add_argument("--use_llm", action="store_true", help="Include LiteLLM classifier in evaluation")
+    parser = argparse.ArgumentParser(description="Evaluate the LLM classifier")
     parser.add_argument("--verbose", action="store_true", help="Show detailed output per document")
     args = parser.parse_args()
-    
-    print(f"\n🧪 Classification Evaluation")
+
+    print(f"\n🧪 LLM Classification Evaluation")
     print(f"Test set size: {len(LABELED_TEST_SET)} documents")
     print(f"Timestamp: {datetime.now().isoformat()}\n")
-    
-    # Evaluate heuristic
-    print("Running heuristic classifier...")
-    results_heuristic = evaluate_classifier(
-        "heuristic",
-        classify_document_heuristic,
+
+    print("Running LiteLLM classifier...")
+    results_litellm = evaluate_classifier(
+        "litellm",
+        classify_document_litellm,
         LABELED_TEST_SET,
         verbose=args.verbose
     )
-    
-    results_litellm = None
-    if args.use_llm:
-        print("\nRunning LiteLLM classifier...")
-        results_litellm = evaluate_classifier(
-            "litellm",
-            classify_document_litellm,
-            LABELED_TEST_SET,
-            verbose=args.verbose
-        )
-    
-    # Print report
-    report = format_report(results_heuristic, results_litellm)
+
+    report = format_report(results_litellm)
     print(report)
-    
-    # Save report
+
     report_file = Path("classification_eval_report.txt")
     report_file.write_text(report)
     print(f"✅ Report saved to {report_file}\n")
