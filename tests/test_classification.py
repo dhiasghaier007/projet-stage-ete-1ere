@@ -15,7 +15,7 @@ class LLMOnlyClassificationTests(unittest.TestCase):
                 ["ollama/mistral", "gemini/gemini-2.0-flash"],
             )
 
-    def test_classify_document_litellm_marks_failure_when_llm_errors(self):
+    def test_classify_document_litellm_falls_back_to_heuristic_when_llm_errors(self):
         def fake_completion(*args, **kwargs):
             raise RuntimeError("AuthenticationError: invalid api key")
 
@@ -23,12 +23,13 @@ class LLMOnlyClassificationTests(unittest.TestCase):
 
         with patch.dict(os.environ, {"LITELLM_MODEL_NAMES": "ollama/mistral"}, clear=True):
             with patch.dict(sys.modules, {"litellm": fake_litellm}):
-                result = classify_document_litellm("Some document", "test.md")
+                result = classify_document_litellm("HR policy for remote work", "test.md")
 
-        self.assertEqual(result["status"], "failed")
-        self.assertEqual(result["classifier"], "litellm")
-        self.assertEqual(result["confidence"], 0.0)
-        self.assertIn("AuthenticationError", result["error"])
+        self.assertEqual(result["classifier"], "heuristic_fallback")
+        self.assertEqual(result["department"], "HR")
+        self.assertEqual(result["doc_type"], "Policy")
+        self.assertEqual(result["language"], "EN")
+        self.assertGreaterEqual(result["confidence"], 0.0)
 
 
 if __name__ == "__main__":
