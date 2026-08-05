@@ -1,0 +1,12 @@
+{
+  "source_path": "/data/source/test.csv",
+  "file_hash": "682ae087d94e93f5c94588cf41fd4414fa368dc06c5f232d0ddcad9ea39c8e56",
+  "ingested_at": "2026-07-26T21:34:18.601658+00:00",
+  "rows": 2,
+  "columns": [
+    "dept",
+    "doc_type",
+    "language"
+  ],
+  "origin_filename": "test.csv"
+}

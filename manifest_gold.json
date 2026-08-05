@@ -1,0 +1,552 @@
+{
+  "7ccb1d356b6f5c1a54a885015e43f68c90507436ec3efa0a4824fb96ac22473f": {
+    "source_path": "test_corpus/gold/doc_000_it_report.txt",
+    "file_hash": "7ccb1d356b6f5c1a54a885015e43f68c90507436ec3efa0a4824fb96ac22473f",
+    "mtime": 1785229663.650317,
+    "size_bytes": 101,
+    "status": "new",
+    "output_path": "processed_gold/doc_000_it_report.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.102957+00:00"
+  },
+  "06408252fd724328ed3c0986969db0129195dc6b4c148dd64a4e73a3a399a270": {
+    "source_path": "test_corpus/gold/doc_001_legal_contract.txt",
+    "file_hash": "06408252fd724328ed3c0986969db0129195dc6b4c148dd64a4e73a3a399a270",
+    "mtime": 1785229663.651317,
+    "size_bytes": 130,
+    "status": "new",
+    "output_path": "processed_gold/doc_001_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.104540+00:00"
+  },
+  "7da430bcb0c7e90750db11bdd6777a58ea6adf1e8ab280b75eeae13051a68513": {
+    "source_path": "test_corpus/gold/doc_002_general_email.txt",
+    "file_hash": "7da430bcb0c7e90750db11bdd6777a58ea6adf1e8ab280b75eeae13051a68513",
+    "mtime": 1785229663.651317,
+    "size_bytes": 78,
+    "status": "new",
+    "output_path": "processed_gold/doc_002_general_email.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.105256+00:00"
+  },
+  "da8c47ba5723e341a3f76d2ca8cebc8cddd874a10ae1564a8688aef50fcbeb3f": {
+    "source_path": "test_corpus/gold/doc_003_general_email.txt",
+    "file_hash": "da8c47ba5723e341a3f76d2ca8cebc8cddd874a10ae1564a8688aef50fcbeb3f",
+    "mtime": 1785229663.651317,
+    "size_bytes": 100,
+    "status": "new",
+    "output_path": "processed_gold/doc_003_general_email.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.106015+00:00"
+  },
+  "bc001a6a61c80f001282484522cc9cf455e8df44156264d9adccb4105c8ac18c": {
+    "source_path": "test_corpus/gold/doc_004_finance_invoice.txt",
+    "file_hash": "bc001a6a61c80f001282484522cc9cf455e8df44156264d9adccb4105c8ac18c",
+    "mtime": 1785229663.651317,
+    "size_bytes": 114,
+    "status": "new",
+    "output_path": "processed_gold/doc_004_finance_invoice.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.106699+00:00"
+  },
+  "742894257c079ea7f411e5272c1f0bcb0f37b61c26e70dab34bd10d255efdb8d": {
+    "source_path": "test_corpus/gold/doc_005_finance_invoice.txt",
+    "file_hash": "742894257c079ea7f411e5272c1f0bcb0f37b61c26e70dab34bd10d255efdb8d",
+    "mtime": 1785229663.651317,
+    "size_bytes": 114,
+    "status": "new",
+    "output_path": "processed_gold/doc_005_finance_invoice.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.108300+00:00"
+  },
+  "de32e1ad38760fc3f4005e73b71242e9fb395f09d711eba729571ec308e91f4f": {
+    "source_path": "test_corpus/gold/doc_006_general_email.txt",
+    "file_hash": "de32e1ad38760fc3f4005e73b71242e9fb395f09d711eba729571ec308e91f4f",
+    "mtime": 1785229663.651317,
+    "size_bytes": 100,
+    "status": "new",
+    "output_path": "processed_gold/doc_006_general_email.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.109898+00:00"
+  },
+  "00f1901b9780c123a722848baa46d06c535eea3dcd945559577d271361d55289": {
+    "source_path": "test_corpus/gold/doc_007_it_report.txt",
+    "file_hash": "00f1901b9780c123a722848baa46d06c535eea3dcd945559577d271361d55289",
+    "mtime": 1785229663.651317,
+    "size_bytes": 101,
+    "status": "new",
+    "output_path": "processed_gold/doc_007_it_report.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.111176+00:00"
+  },
+  "ddb7f00eeab54a266de8ec2a5c63567c58ca4745c594c4a89f2c4e6ab3d7e9af": {
+    "source_path": "test_corpus/gold/doc_008_it_report.txt",
+    "file_hash": "ddb7f00eeab54a266de8ec2a5c63567c58ca4745c594c4a89f2c4e6ab3d7e9af",
+    "mtime": 1785229663.651317,
+    "size_bytes": 98,
+    "status": "new",
+    "output_path": "processed_gold/doc_008_it_report.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.111667+00:00"
+  },
+  "9cb3aeb14966b068227b607b4f8e306c8ff6b2e1b91fe7fb9dc2cffcd64f508f": {
+    "source_path": "test_corpus/gold/doc_009_finance_invoice.txt",
+    "file_hash": "9cb3aeb14966b068227b607b4f8e306c8ff6b2e1b91fe7fb9dc2cffcd64f508f",
+    "mtime": 1785229663.651317,
+    "size_bytes": 118,
+    "status": "new",
+    "output_path": "processed_gold/doc_009_finance_invoice.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.112139+00:00"
+  },
+  "b9a790aa1b9db4972da312000f6cc77a769eed71f3815dbd2687e8f730d5949f": {
+    "source_path": "test_corpus/gold/doc_010_finance_invoice.txt",
+    "file_hash": "b9a790aa1b9db4972da312000f6cc77a769eed71f3815dbd2687e8f730d5949f",
+    "mtime": 1785229663.651317,
+    "size_bytes": 114,
+    "status": "new",
+    "output_path": "processed_gold/doc_010_finance_invoice.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.112684+00:00"
+  },
+  "ceaaaf3a879d3538d19ea4af13a136180a71b109e6ae667e16bd915f9ec80b57": {
+    "source_path": "test_corpus/gold/doc_011_finance_invoice.txt",
+    "file_hash": "ceaaaf3a879d3538d19ea4af13a136180a71b109e6ae667e16bd915f9ec80b57",
+    "mtime": 1785229663.651317,
+    "size_bytes": 114,
+    "status": "new",
+    "output_path": "processed_gold/doc_011_finance_invoice.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.113135+00:00"
+  },
+  "40b3fc48ed0c24709b175933f41306600c0e173e2140f3ecfed2af9917808d67": {
+    "source_path": "test_corpus/gold/doc_012_general_email.txt",
+    "file_hash": "40b3fc48ed0c24709b175933f41306600c0e173e2140f3ecfed2af9917808d67",
+    "mtime": 1785229663.651317,
+    "size_bytes": 78,
+    "status": "new",
+    "output_path": "processed_gold/doc_012_general_email.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.113549+00:00"
+  },
+  "ee769a6aa9f94b3ecf3886b3c9f731d37ff59e29c3730696e3922872b7105de3": {
+    "source_path": "test_corpus/gold/doc_013_legal_contract.txt",
+    "file_hash": "ee769a6aa9f94b3ecf3886b3c9f731d37ff59e29c3730696e3922872b7105de3",
+    "mtime": 1785229663.651317,
+    "size_bytes": 122,
+    "status": "new",
+    "output_path": "processed_gold/doc_013_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.114362+00:00"
+  },
+  "973d8746d0d1302cf7fe78a0280c6e8a6d284ba59a288612759bba91e92f8771": {
+    "source_path": "test_corpus/gold/doc_014_legal_contract.txt",
+    "file_hash": "973d8746d0d1302cf7fe78a0280c6e8a6d284ba59a288612759bba91e92f8771",
+    "mtime": 1785229663.651317,
+    "size_bytes": 130,
+    "status": "new",
+    "output_path": "processed_gold/doc_014_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.115353+00:00"
+  },
+  "4eb298db23c803c87b7d267e2317d1a19c4b3b9132de7de124a821acd8e74183": {
+    "source_path": "test_corpus/gold/doc_015_legal_contract.txt",
+    "file_hash": "4eb298db23c803c87b7d267e2317d1a19c4b3b9132de7de124a821acd8e74183",
+    "mtime": 1785229663.651317,
+    "size_bytes": 122,
+    "status": "new",
+    "output_path": "processed_gold/doc_015_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.115979+00:00"
+  },
+  "e7ad7b3d71c526ab08cf94133b46cec304c659ea65b54da5b517ac935f2d5db7": {
+    "source_path": "test_corpus/gold/doc_016_legal_contract.txt",
+    "file_hash": "e7ad7b3d71c526ab08cf94133b46cec304c659ea65b54da5b517ac935f2d5db7",
+    "mtime": 1785229663.651317,
+    "size_bytes": 130,
+    "status": "new",
+    "output_path": "processed_gold/doc_016_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.116500+00:00"
+  },
+  "b33d063f5b79cdf02caa51801169ebeaff970e21395f7df4bb9bb2cad4af1b29": {
+    "source_path": "test_corpus/gold/doc_017_it_report.txt",
+    "file_hash": "b33d063f5b79cdf02caa51801169ebeaff970e21395f7df4bb9bb2cad4af1b29",
+    "mtime": 1785229663.651317,
+    "size_bytes": 102,
+    "status": "new",
+    "output_path": "processed_gold/doc_017_it_report.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.116925+00:00"
+  },
+  "23d2dec43e5cd7a0dda3b8fbbbb4c4ee010147cb6525959589f5eb9ca4a9561a": {
+    "source_path": "test_corpus/gold/doc_018_it_report.txt",
+    "file_hash": "23d2dec43e5cd7a0dda3b8fbbbb4c4ee010147cb6525959589f5eb9ca4a9561a",
+    "mtime": 1785229663.651317,
+    "size_bytes": 101,
+    "status": "new",
+    "output_path": "processed_gold/doc_018_it_report.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.117331+00:00"
+  },
+  "1ade6088a0ff55a76920818cb108d5d0b2c51b3a22d0510e2d6c9499d4684a90": {
+    "source_path": "test_corpus/gold/doc_019_hr_policy.txt",
+    "file_hash": "1ade6088a0ff55a76920818cb108d5d0b2c51b3a22d0510e2d6c9499d4684a90",
+    "mtime": 1785229663.651317,
+    "size_bytes": 122,
+    "status": "new",
+    "output_path": "processed_gold/doc_019_hr_policy.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.117939+00:00"
+  },
+  "b182a4c9c76ac5e5a292abafd32b164fdc3d1380954626921ac105ab0c9438b2": {
+    "source_path": "test_corpus/gold/doc_020_it_report.txt",
+    "file_hash": "b182a4c9c76ac5e5a292abafd32b164fdc3d1380954626921ac105ab0c9438b2",
+    "mtime": 1785229663.651317,
+    "size_bytes": 105,
+    "status": "new",
+    "output_path": "processed_gold/doc_020_it_report.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.118380+00:00"
+  },
+  "5a9b471e78e25ec18c740ddb33d102039d23047e87f9167bd39ff8cf74ecd1bc": {
+    "source_path": "test_corpus/gold/doc_021_finance_invoice.txt",
+    "file_hash": "5a9b471e78e25ec18c740ddb33d102039d23047e87f9167bd39ff8cf74ecd1bc",
+    "mtime": 1785229663.651317,
+    "size_bytes": 114,
+    "status": "new",
+    "output_path": "processed_gold/doc_021_finance_invoice.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.118733+00:00"
+  },
+  "68fd5a86d94d87bcde5458f0c14805109af9d840b51fe94ad00da06e7f8c1c3e": {
+    "source_path": "test_corpus/gold/doc_022_hr_policy.txt",
+    "file_hash": "68fd5a86d94d87bcde5458f0c14805109af9d840b51fe94ad00da06e7f8c1c3e",
+    "mtime": 1785229663.651317,
+    "size_bytes": 133,
+    "status": "new",
+    "output_path": "processed_gold/doc_022_hr_policy.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.119426+00:00"
+  },
+  "1264744c75876bb276305e7d1217d288554e53c767d4dd6d22941cfba5c18bc9": {
+    "source_path": "test_corpus/gold/doc_023_legal_contract.txt",
+    "file_hash": "1264744c75876bb276305e7d1217d288554e53c767d4dd6d22941cfba5c18bc9",
+    "mtime": 1785229663.651317,
+    "size_bytes": 189,
+    "status": "new",
+    "output_path": "processed_gold/doc_023_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.120001+00:00"
+  },
+  "6e8beaf6e7edd0eb90799da5f91513600ba6cd46f60a2578fc3d47791fb702c4": {
+    "source_path": "test_corpus/gold/doc_024_legal_contract.txt",
+    "file_hash": "6e8beaf6e7edd0eb90799da5f91513600ba6cd46f60a2578fc3d47791fb702c4",
+    "mtime": 1785229663.651317,
+    "size_bytes": 130,
+    "status": "new",
+    "output_path": "processed_gold/doc_024_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.120430+00:00"
+  },
+  "bcc7844243cbe881bafa00b16962ba4946aa2c37ee9023f2f5bcc2b959cc2c16": {
+    "source_path": "test_corpus/gold/doc_025_hr_policy.txt",
+    "file_hash": "bcc7844243cbe881bafa00b16962ba4946aa2c37ee9023f2f5bcc2b959cc2c16",
+    "mtime": 1785229663.651317,
+    "size_bytes": 159,
+    "status": "new",
+    "output_path": "processed_gold/doc_025_hr_policy.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.120892+00:00"
+  },
+  "513cd12c34096dae2a485e15a6c3ddadee8b585bbba763b02db3119835375e54": {
+    "source_path": "test_corpus/gold/doc_026_it_report.txt",
+    "file_hash": "513cd12c34096dae2a485e15a6c3ddadee8b585bbba763b02db3119835375e54",
+    "mtime": 1785229663.651317,
+    "size_bytes": 101,
+    "status": "new",
+    "output_path": "processed_gold/doc_026_it_report.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.121261+00:00"
+  },
+  "86750dfa0cce9606acb46642196a166675e3d217fb631b4f99cb2169e3f2affd": {
+    "source_path": "test_corpus/gold/doc_027_finance_invoice.txt",
+    "file_hash": "86750dfa0cce9606acb46642196a166675e3d217fb631b4f99cb2169e3f2affd",
+    "mtime": 1785229663.651317,
+    "size_bytes": 134,
+    "status": "new",
+    "output_path": "processed_gold/doc_027_finance_invoice.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.121641+00:00"
+  },
+  "e5ae5692ac73de5c19f32b7ce170a035a1b8abb482419a5b2a365ee705621c62": {
+    "source_path": "test_corpus/gold/doc_028_finance_invoice.txt",
+    "file_hash": "e5ae5692ac73de5c19f32b7ce170a035a1b8abb482419a5b2a365ee705621c62",
+    "mtime": 1785229663.651317,
+    "size_bytes": 134,
+    "status": "new",
+    "output_path": "processed_gold/doc_028_finance_invoice.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.121951+00:00"
+  },
+  "3d6568b3cf9817904bfb777afb80ae38761fb0021c8a355a6b3280d7849eaf6c": {
+    "source_path": "test_corpus/gold/doc_029_legal_contract.txt",
+    "file_hash": "3d6568b3cf9817904bfb777afb80ae38761fb0021c8a355a6b3280d7849eaf6c",
+    "mtime": 1785229663.651317,
+    "size_bytes": 122,
+    "status": "new",
+    "output_path": "processed_gold/doc_029_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.122324+00:00"
+  },
+  "af7a3231915fc79e74954aa38c0739b319e569768b4905d26f0cea0895fbb9f8": {
+    "source_path": "test_corpus/gold/doc_030_general_email.txt",
+    "file_hash": "af7a3231915fc79e74954aa38c0739b319e569768b4905d26f0cea0895fbb9f8",
+    "mtime": 1785229663.651317,
+    "size_bytes": 100,
+    "status": "new",
+    "output_path": "processed_gold/doc_030_general_email.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.123336+00:00"
+  },
+  "9821420616d2c61d51038fa3adf2dd897e64fceacab129494f1cdbcf8d202b86": {
+    "source_path": "test_corpus/gold/doc_031_it_report.txt",
+    "file_hash": "9821420616d2c61d51038fa3adf2dd897e64fceacab129494f1cdbcf8d202b86",
+    "mtime": 1785229663.651317,
+    "size_bytes": 105,
+    "status": "new",
+    "output_path": "processed_gold/doc_031_it_report.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.124240+00:00"
+  },
+  "3c9bab9b93c3102a037d42c0c83d315149e44a444d1371ddfae0ab494bc108bf": {
+    "source_path": "test_corpus/gold/doc_032_legal_contract.txt",
+    "file_hash": "3c9bab9b93c3102a037d42c0c83d315149e44a444d1371ddfae0ab494bc108bf",
+    "mtime": 1785229663.651317,
+    "size_bytes": 144,
+    "status": "new",
+    "output_path": "processed_gold/doc_032_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.125376+00:00"
+  },
+  "a519a3659ef0c2164c403e084356a98ea0783945f31db9de6578f2535ea37403": {
+    "source_path": "test_corpus/gold/doc_033_legal_contract.txt",
+    "file_hash": "a519a3659ef0c2164c403e084356a98ea0783945f31db9de6578f2535ea37403",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 130,
+    "status": "new",
+    "output_path": "processed_gold/doc_033_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.126137+00:00"
+  },
+  "e13fd242b396f509feab2c6b08f59ce05f4afa94ca8b22999eb6fa2551620032": {
+    "source_path": "test_corpus/gold/doc_034_legal_contract.txt",
+    "file_hash": "e13fd242b396f509feab2c6b08f59ce05f4afa94ca8b22999eb6fa2551620032",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 122,
+    "status": "new",
+    "output_path": "processed_gold/doc_034_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.126635+00:00"
+  },
+  "963de02750ae3665e69cb4c0c631f08ad329334c4161c48e3b626ac90dc4e414": {
+    "source_path": "test_corpus/gold/doc_035_it_report.txt",
+    "file_hash": "963de02750ae3665e69cb4c0c631f08ad329334c4161c48e3b626ac90dc4e414",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 143,
+    "status": "new",
+    "output_path": "processed_gold/doc_035_it_report.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.127062+00:00"
+  },
+  "feded6b215592baf8e3f9e223ccb083854ddef5f40e053b2224c1f1c1ae09f77": {
+    "source_path": "test_corpus/gold/doc_036_finance_invoice.txt",
+    "file_hash": "feded6b215592baf8e3f9e223ccb083854ddef5f40e053b2224c1f1c1ae09f77",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 118,
+    "status": "new",
+    "output_path": "processed_gold/doc_036_finance_invoice.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.127443+00:00"
+  },
+  "77b9a50ed72fbe284b5d824acaf5b0c1d87d341b4c126c334219951197064194": {
+    "source_path": "test_corpus/gold/doc_037_it_report.txt",
+    "file_hash": "77b9a50ed72fbe284b5d824acaf5b0c1d87d341b4c126c334219951197064194",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 105,
+    "status": "new",
+    "output_path": "processed_gold/doc_037_it_report.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.127852+00:00"
+  },
+  "9dfcbc2d622a1343559958aa5e2310bac33fc82eeb34013940c41b0b13b4719d": {
+    "source_path": "test_corpus/gold/doc_038_general_email.txt",
+    "file_hash": "9dfcbc2d622a1343559958aa5e2310bac33fc82eeb34013940c41b0b13b4719d",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 78,
+    "status": "new",
+    "output_path": "processed_gold/doc_038_general_email.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.128208+00:00"
+  },
+  "04941e7cb41566a76530408ffaa993359a25a275c0a8d6b2adff233de5af9681": {
+    "source_path": "test_corpus/gold/doc_039_general_email.txt",
+    "file_hash": "04941e7cb41566a76530408ffaa993359a25a275c0a8d6b2adff233de5af9681",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 77,
+    "status": "new",
+    "output_path": "processed_gold/doc_039_general_email.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.128696+00:00"
+  },
+  "3419902c963f2873f046f227e41036c0c1b454c8fb4dfffc87eb4f34ae1f729b": {
+    "source_path": "test_corpus/gold/doc_040_hr_policy.txt",
+    "file_hash": "3419902c963f2873f046f227e41036c0c1b454c8fb4dfffc87eb4f34ae1f729b",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 159,
+    "status": "new",
+    "output_path": "processed_gold/doc_040_hr_policy.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.129591+00:00"
+  },
+  "1b7552e8f0d830a587d6fe0c72c9760cc9a391e8b26cf0e6d4628a1f66f48af5": {
+    "source_path": "test_corpus/gold/doc_042_it_report.txt",
+    "file_hash": "1b7552e8f0d830a587d6fe0c72c9760cc9a391e8b26cf0e6d4628a1f66f48af5",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 105,
+    "status": "new",
+    "output_path": "processed_gold/doc_042_it_report.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.130126+00:00"
+  },
+  "10941055dc0c29265b0f36bc028ef0f8e2c0e0d9b7d713997c1b0c80cd9b6d85": {
+    "source_path": "test_corpus/gold/doc_043_finance_invoice.txt",
+    "file_hash": "10941055dc0c29265b0f36bc028ef0f8e2c0e0d9b7d713997c1b0c80cd9b6d85",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 114,
+    "status": "new",
+    "output_path": "processed_gold/doc_043_finance_invoice.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.130529+00:00"
+  },
+  "e731020687c056d6bf049f937aa1cddc51bf4978c423448d19d91092b4545536": {
+    "source_path": "test_corpus/gold/doc_045_legal_contract.txt",
+    "file_hash": "e731020687c056d6bf049f937aa1cddc51bf4978c423448d19d91092b4545536",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 167,
+    "status": "new",
+    "output_path": "processed_gold/doc_045_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.130972+00:00"
+  },
+  "370507486c6cef39a1dcf061cb07e9b11027247a9b07fd9bb420c7297ef907f0": {
+    "source_path": "test_corpus/gold/doc_046_finance_invoice.txt",
+    "file_hash": "370507486c6cef39a1dcf061cb07e9b11027247a9b07fd9bb420c7297ef907f0",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 114,
+    "status": "new",
+    "output_path": "processed_gold/doc_046_finance_invoice.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.131358+00:00"
+  },
+  "95fee59e9b4c3f18371754c4052feb846774eb7a5e09467f86c35c5897bc1489": {
+    "source_path": "test_corpus/gold/doc_047_legal_contract.txt",
+    "file_hash": "95fee59e9b4c3f18371754c4052feb846774eb7a5e09467f86c35c5897bc1489",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 122,
+    "status": "new",
+    "output_path": "processed_gold/doc_047_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.131694+00:00"
+  },
+  "b97ae327cf642b2a34d880e52998f2fddbcbf77b4b9f0e3bd9f1fd174871979a": {
+    "source_path": "test_corpus/gold/doc_048_general_email.txt",
+    "file_hash": "b97ae327cf642b2a34d880e52998f2fddbcbf77b4b9f0e3bd9f1fd174871979a",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 78,
+    "status": "new",
+    "output_path": "processed_gold/doc_048_general_email.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.132033+00:00"
+  },
+  "63e08a14e3d5c16b7fe3b3ce67d03977a5b686ce9b4dbb0f6b4360f8088e2717": {
+    "source_path": "test_corpus/gold/doc_049_it_policy.txt",
+    "file_hash": "63e08a14e3d5c16b7fe3b3ce67d03977a5b686ce9b4dbb0f6b4360f8088e2717",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 156,
+    "status": "new",
+    "output_path": "processed_gold/doc_049_it_policy.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.132413+00:00"
+  },
+  "00975862d9375f642c71c9c0ba19b9054636ad0638f9bc7f2624e1a5ec9b52b2": {
+    "source_path": "test_corpus/gold/doc_050_finance_invoice.txt",
+    "file_hash": "00975862d9375f642c71c9c0ba19b9054636ad0638f9bc7f2624e1a5ec9b52b2",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 114,
+    "status": "new",
+    "output_path": "processed_gold/doc_050_finance_invoice.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.133303+00:00"
+  },
+  "adc378aef8116066246240d5052acade72a78db814185e0d0eee2f4e6b1da42c": {
+    "source_path": "test_corpus/gold/doc_051_it_report.txt",
+    "file_hash": "adc378aef8116066246240d5052acade72a78db814185e0d0eee2f4e6b1da42c",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 105,
+    "status": "new",
+    "output_path": "processed_gold/doc_051_it_report.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.134068+00:00"
+  },
+  "ad0d41446e692f5363e09c3f132d31ef6d9b2835fcee1e2f0f106ebf710c4900": {
+    "source_path": "test_corpus/gold/doc_053_finance_invoice.txt",
+    "file_hash": "ad0d41446e692f5363e09c3f132d31ef6d9b2835fcee1e2f0f106ebf710c4900",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 118,
+    "status": "new",
+    "output_path": "processed_gold/doc_053_finance_invoice.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.134568+00:00"
+  },
+  "5ec3c7592951658033ceff84db3cb6a0c0a229288708913b681804a2105a6a84": {
+    "source_path": "test_corpus/gold/doc_055_hr_policy.txt",
+    "file_hash": "5ec3c7592951658033ceff84db3cb6a0c0a229288708913b681804a2105a6a84",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 133,
+    "status": "new",
+    "output_path": "processed_gold/doc_055_hr_policy.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.135164+00:00"
+  },
+  "7df30c1078cd84116d78bda8e806732395248c0deecc9ae3c01e89d73ecab608": {
+    "source_path": "test_corpus/gold/doc_056_legal_contract.txt",
+    "file_hash": "7df30c1078cd84116d78bda8e806732395248c0deecc9ae3c01e89d73ecab608",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 130,
+    "status": "new",
+    "output_path": "processed_gold/doc_056_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.135564+00:00"
+  },
+  "4e36e9a16bd3b0d8aa7ba838ab8ef2087e3598ab7400bca922175e5c1e4fe379": {
+    "source_path": "test_corpus/gold/doc_057_finance_invoice.txt",
+    "file_hash": "4e36e9a16bd3b0d8aa7ba838ab8ef2087e3598ab7400bca922175e5c1e4fe379",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 114,
+    "status": "new",
+    "output_path": "processed_gold/doc_057_finance_invoice.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.135949+00:00"
+  },
+  "97d607d84858188ef3d3d665094aa0dc3dc009386daa43f49bb68e473eba3d7f": {
+    "source_path": "test_corpus/gold/doc_058_general_email.txt",
+    "file_hash": "97d607d84858188ef3d3d665094aa0dc3dc009386daa43f49bb68e473eba3d7f",
+    "mtime": 1785229663.6523168,
+    "size_bytes": 78,
+    "status": "new",
+    "output_path": "processed_gold/doc_058_general_email.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.136375+00:00"
+  }
+}

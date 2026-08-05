@@ -1,0 +1,15 @@
+{
+  "source_path": "test_corpus/dev/doc_005_hr_policy.txt",
+  "file_hash": "8e3c6cca83b5265b205adadb26524cfdd31be0d8f9af3f90794665c7a1dae5eb",
+  "ingested_at": "2026-08-04T08:07:12.997737+00:00",
+  "origin_filename": "doc_005_hr_policy.txt",
+  "title": "doc_005_hr_policy",
+  "classification": {
+    "status": "failed",
+    "classifier": "litellm",
+    "confidence": 0.0,
+    "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable.",
+    "llm_model": "gpt-3.5-turbo"
+  },
+  "classified_at": "2026-08-04T08:07:19.283596+00:00"
+}

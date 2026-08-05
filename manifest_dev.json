@@ -1,0 +1,282 @@
+{
+  "f51ac588bcad75e64cb4ebc8e8c81dd72833710173fcda9969db184633e5624d": {
+    "source_path": "test_corpus/dev/doc_000_legal_contract.txt",
+    "file_hash": "f51ac588bcad75e64cb4ebc8e8c81dd72833710173fcda9969db184633e5624d",
+    "mtime": 1785229663.649317,
+    "size_bytes": 122,
+    "status": "new",
+    "output_path": "processed_dev/doc_000_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:12.955896+00:00"
+  },
+  "5cc4902cb075f4f065a1b10d47448a71a2953fde762ce80ae1b5acbb63e8d165": {
+    "source_path": "test_corpus/dev/doc_001_hr_policy.txt",
+    "file_hash": "5cc4902cb075f4f065a1b10d47448a71a2953fde762ce80ae1b5acbb63e8d165",
+    "mtime": 1785229663.649317,
+    "size_bytes": 133,
+    "status": "new",
+    "output_path": "processed_dev/doc_001_hr_policy.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:12.996193+00:00"
+  },
+  "0b55f6fed345ce4cd9043ca005c0dcb1c11849b8bb073edc3e01d1f8eb15adc7": {
+    "source_path": "test_corpus/dev/doc_002_it_report.txt",
+    "file_hash": "0b55f6fed345ce4cd9043ca005c0dcb1c11849b8bb073edc3e01d1f8eb15adc7",
+    "mtime": 1785229663.649317,
+    "size_bytes": 105,
+    "status": "new",
+    "output_path": "processed_dev/doc_002_it_report.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:12.996805+00:00"
+  },
+  "3bd365c2ad903a4da53eaab5c85794f4d8573ed2e1b5a2f91238e16eb3823955": {
+    "source_path": "test_corpus/dev/doc_003_hr_policy.txt",
+    "file_hash": "3bd365c2ad903a4da53eaab5c85794f4d8573ed2e1b5a2f91238e16eb3823955",
+    "mtime": 1785229663.649317,
+    "size_bytes": 133,
+    "status": "new",
+    "output_path": "processed_dev/doc_003_hr_policy.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:12.997116+00:00"
+  },
+  "d16097af1d9f3730dc6e27711e1a8366144e0ad85aac8e4812821b5d95a83ffd": {
+    "source_path": "test_corpus/dev/doc_004_it_report.txt",
+    "file_hash": "d16097af1d9f3730dc6e27711e1a8366144e0ad85aac8e4812821b5d95a83ffd",
+    "mtime": 1785229663.649317,
+    "size_bytes": 98,
+    "status": "new",
+    "output_path": "processed_dev/doc_004_it_report.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:12.997389+00:00"
+  },
+  "8e3c6cca83b5265b205adadb26524cfdd31be0d8f9af3f90794665c7a1dae5eb": {
+    "source_path": "test_corpus/dev/doc_005_hr_policy.txt",
+    "file_hash": "8e3c6cca83b5265b205adadb26524cfdd31be0d8f9af3f90794665c7a1dae5eb",
+    "mtime": 1785229663.649317,
+    "size_bytes": 168,
+    "status": "new",
+    "output_path": "processed_dev/doc_005_hr_policy.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:12.997737+00:00"
+  },
+  "3c9bab9b93c3102a037d42c0c83d315149e44a444d1371ddfae0ab494bc108bf": {
+    "source_path": "test_corpus/dev/doc_006_legal_contract.txt",
+    "file_hash": "3c9bab9b93c3102a037d42c0c83d315149e44a444d1371ddfae0ab494bc108bf",
+    "mtime": 1785229663.649317,
+    "size_bytes": 144,
+    "status": "new",
+    "output_path": "processed_dev/doc_006_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:12.998776+00:00"
+  },
+  "0f6f6d35781870d8a85a6eecbd1f7d09569e0371132f8f707968f512f7a8c22a": {
+    "source_path": "test_corpus/dev/doc_007_general_email.txt",
+    "file_hash": "0f6f6d35781870d8a85a6eecbd1f7d09569e0371132f8f707968f512f7a8c22a",
+    "mtime": 1785229663.649317,
+    "size_bytes": 100,
+    "status": "new",
+    "output_path": "processed_dev/doc_007_general_email.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:12.999018+00:00"
+  },
+  "0edf07d15a3c95ddf4796ee9c338a255144d779eb45a0af71e5ec5d34c1aa352": {
+    "source_path": "test_corpus/dev/doc_008_hr_policy.txt",
+    "file_hash": "0edf07d15a3c95ddf4796ee9c338a255144d779eb45a0af71e5ec5d34c1aa352",
+    "mtime": 1785229663.649317,
+    "size_bytes": 123,
+    "status": "new",
+    "output_path": "processed_dev/doc_008_hr_policy.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.000440+00:00"
+  },
+  "2fe813aa08e2a17b4d9f477d3b3076162dbb307d29e96de5eee6d0b23e1971cf": {
+    "source_path": "test_corpus/dev/doc_009_general_email.txt",
+    "file_hash": "2fe813aa08e2a17b4d9f477d3b3076162dbb307d29e96de5eee6d0b23e1971cf",
+    "mtime": 1785229663.649317,
+    "size_bytes": 78,
+    "status": "new",
+    "output_path": "processed_dev/doc_009_general_email.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.000888+00:00"
+  },
+  "00f1901b9780c123a722848baa46d06c535eea3dcd945559577d271361d55289": {
+    "source_path": "test_corpus/dev/doc_010_it_report.txt",
+    "file_hash": "00f1901b9780c123a722848baa46d06c535eea3dcd945559577d271361d55289",
+    "mtime": 1785229663.649317,
+    "size_bytes": 101,
+    "status": "new",
+    "output_path": "processed_dev/doc_010_it_report.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.001350+00:00"
+  },
+  "b1a2259ad6216a83c02df2ee4937083e61a6051ca2fc2fcf838649e1660a52c5": {
+    "source_path": "test_corpus/dev/doc_011_legal_contract.txt",
+    "file_hash": "b1a2259ad6216a83c02df2ee4937083e61a6051ca2fc2fcf838649e1660a52c5",
+    "mtime": 1785229663.649317,
+    "size_bytes": 130,
+    "status": "new",
+    "output_path": "processed_dev/doc_011_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.001694+00:00"
+  },
+  "1998cee03a3379fa519bd6a76b2f213dc1b77a4cac15ed53a0cd7f2f91015da6": {
+    "source_path": "test_corpus/dev/doc_012_legal_contract.txt",
+    "file_hash": "1998cee03a3379fa519bd6a76b2f213dc1b77a4cac15ed53a0cd7f2f91015da6",
+    "mtime": 1785229663.649317,
+    "size_bytes": 130,
+    "status": "new",
+    "output_path": "processed_dev/doc_012_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.003708+00:00"
+  },
+  "38a1c0a83e42c772fb0bb0b4108324dddbb528f314735b758f3c40c82ed309a1": {
+    "source_path": "test_corpus/dev/doc_013_hr_policy.txt",
+    "file_hash": "38a1c0a83e42c772fb0bb0b4108324dddbb528f314735b758f3c40c82ed309a1",
+    "mtime": 1785229663.650317,
+    "size_bytes": 133,
+    "status": "new",
+    "output_path": "processed_dev/doc_013_hr_policy.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.004767+00:00"
+  },
+  "2940574f907c5239a7c5e48330706880234e2a225da5941e59aed8e990dd5146": {
+    "source_path": "test_corpus/dev/doc_014_hr_policy.txt",
+    "file_hash": "2940574f907c5239a7c5e48330706880234e2a225da5941e59aed8e990dd5146",
+    "mtime": 1785229663.650317,
+    "size_bytes": 123,
+    "status": "new",
+    "output_path": "processed_dev/doc_014_hr_policy.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.005389+00:00"
+  },
+  "d82ff031c31de3dea7779ad424b7b1281c69690581b011e5f9abd54ee4e30a39": {
+    "source_path": "test_corpus/dev/doc_015_hr_policy.txt",
+    "file_hash": "d82ff031c31de3dea7779ad424b7b1281c69690581b011e5f9abd54ee4e30a39",
+    "mtime": 1785229663.650317,
+    "size_bytes": 123,
+    "status": "new",
+    "output_path": "processed_dev/doc_015_hr_policy.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.005918+00:00"
+  },
+  "fe874b5b7ac52570fdefaceadf2a0a42de193c28bbe1b81b9b8a94e56561cb7e": {
+    "source_path": "test_corpus/dev/doc_016_general_email.txt",
+    "file_hash": "fe874b5b7ac52570fdefaceadf2a0a42de193c28bbe1b81b9b8a94e56561cb7e",
+    "mtime": 1785229663.650317,
+    "size_bytes": 100,
+    "status": "new",
+    "output_path": "processed_dev/doc_016_general_email.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.007867+00:00"
+  },
+  "f3bee01bf7c4e9a43ce4997b5e199daa38839d498302e02b66fafadc3b180df5": {
+    "source_path": "test_corpus/dev/doc_017_general_email.txt",
+    "file_hash": "f3bee01bf7c4e9a43ce4997b5e199daa38839d498302e02b66fafadc3b180df5",
+    "mtime": 1785229663.650317,
+    "size_bytes": 77,
+    "status": "new",
+    "output_path": "processed_dev/doc_017_general_email.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.010353+00:00"
+  },
+  "67970b0020713dc2656d866cd92464c08be6f7b0f632cad5a36f027bd538b1c4": {
+    "source_path": "test_corpus/dev/doc_018_hr_policy.txt",
+    "file_hash": "67970b0020713dc2656d866cd92464c08be6f7b0f632cad5a36f027bd538b1c4",
+    "mtime": 1785229663.650317,
+    "size_bytes": 159,
+    "status": "new",
+    "output_path": "processed_dev/doc_018_hr_policy.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.011388+00:00"
+  },
+  "63550321840f108a1ed1b1417e9a48027f98e7a6f4315cd5593cef1e0380ef4f": {
+    "source_path": "test_corpus/dev/doc_019_finance_invoice.txt",
+    "file_hash": "63550321840f108a1ed1b1417e9a48027f98e7a6f4315cd5593cef1e0380ef4f",
+    "mtime": 1785229663.650317,
+    "size_bytes": 134,
+    "status": "new",
+    "output_path": "processed_dev/doc_019_finance_invoice.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.012739+00:00"
+  },
+  "7eb3465004e0d80a73f4a1dae601a214f5144f47ddf4cb43540c0b9091b49be9": {
+    "source_path": "test_corpus/dev/doc_020_general_email.txt",
+    "file_hash": "7eb3465004e0d80a73f4a1dae601a214f5144f47ddf4cb43540c0b9091b49be9",
+    "mtime": 1785229663.650317,
+    "size_bytes": 78,
+    "status": "new",
+    "output_path": "processed_dev/doc_020_general_email.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.013283+00:00"
+  },
+  "2e256537fe5a7af058d083203d6cd3be63498389277994220b0c4914c6a4915c": {
+    "source_path": "test_corpus/dev/doc_021_hr_policy.txt",
+    "file_hash": "2e256537fe5a7af058d083203d6cd3be63498389277994220b0c4914c6a4915c",
+    "mtime": 1785229663.650317,
+    "size_bytes": 123,
+    "status": "new",
+    "output_path": "processed_dev/doc_021_hr_policy.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.013963+00:00"
+  },
+  "314a9e109ab514c1e4c014482186a8b86df75d0c89c0c77a1b9aa92a7bd41e7a": {
+    "source_path": "test_corpus/dev/doc_022_finance_invoice.txt",
+    "file_hash": "314a9e109ab514c1e4c014482186a8b86df75d0c89c0c77a1b9aa92a7bd41e7a",
+    "mtime": 1785229663.650317,
+    "size_bytes": 114,
+    "status": "new",
+    "output_path": "processed_dev/doc_022_finance_invoice.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.014613+00:00"
+  },
+  "a491d139aed4fa0a6385d9d64fb4b9b66b96b3186f8bb74bc5a33b209c42c50f": {
+    "source_path": "test_corpus/dev/doc_024_legal_contract.txt",
+    "file_hash": "a491d139aed4fa0a6385d9d64fb4b9b66b96b3186f8bb74bc5a33b209c42c50f",
+    "mtime": 1785229663.650317,
+    "size_bytes": 122,
+    "status": "new",
+    "output_path": "processed_dev/doc_024_legal_contract.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.015241+00:00"
+  },
+  "5282166b79a033e3abf98507d1cf1bb6fd8237172830eed3b716f4707d4c45b1": {
+    "source_path": "test_corpus/dev/doc_025_hr_policy.txt",
+    "file_hash": "5282166b79a033e3abf98507d1cf1bb6fd8237172830eed3b716f4707d4c45b1",
+    "mtime": 1785229663.650317,
+    "size_bytes": 123,
+    "status": "new",
+    "output_path": "processed_dev/doc_025_hr_policy.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.015739+00:00"
+  },
+  "4c769237a5b047f49a8fbdfcdfc9a60c1c778f60f396abb72f1263339b17e1d0": {
+    "source_path": "test_corpus/dev/doc_026_finance_invoice.txt",
+    "file_hash": "4c769237a5b047f49a8fbdfcdfc9a60c1c778f60f396abb72f1263339b17e1d0",
+    "mtime": 1785229663.650317,
+    "size_bytes": 118,
+    "status": "new",
+    "output_path": "processed_dev/doc_026_finance_invoice.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.016235+00:00"
+  },
+  "f500f7244ccb663714df6627e773c5896c4249ba1e2326098a4eded3ecc461a6": {
+    "source_path": "test_corpus/dev/doc_027_finance_invoice.txt",
+    "file_hash": "f500f7244ccb663714df6627e773c5896c4249ba1e2326098a4eded3ecc461a6",
+    "mtime": 1785229663.650317,
+    "size_bytes": 133,
+    "status": "new",
+    "output_path": "processed_dev/doc_027_finance_invoice.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.016983+00:00"
+  },
+  "4eb527863af0bac6af6633aae9e8ca03c79bb25cc9154a6071f67feacb806b19": {
+    "source_path": "test_corpus/dev/doc_029_hr_policy.txt",
+    "file_hash": "4eb527863af0bac6af6633aae9e8ca03c79bb25cc9154a6071f67feacb806b19",
+    "mtime": 1785229663.650317,
+    "size_bytes": 133,
+    "status": "new",
+    "output_path": "processed_dev/doc_029_hr_policy.md",
+    "error": null,
+    "processed_at": "2026-08-04T08:07:13.017713+00:00"
+  }
+}

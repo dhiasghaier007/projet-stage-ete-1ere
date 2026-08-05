@@ -1,0 +1,15 @@
+{
+  "source_path": "test_corpus/gold/doc_046_finance_invoice.txt",
+  "file_hash": "370507486c6cef39a1dcf061cb07e9b11027247a9b07fd9bb420c7297ef907f0",
+  "ingested_at": "2026-08-04T08:07:13.131358+00:00",
+  "origin_filename": "doc_046_finance_invoice.txt",
+  "title": "doc_046_finance_invoice",
+  "classification": {
+    "status": "failed",
+    "classifier": "litellm",
+    "confidence": 0.0,
+    "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable.",
+    "llm_model": "gpt-3.5-turbo"
+  },
+  "classified_at": "2026-08-04T08:07:23.431582+00:00"
+}

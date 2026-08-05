@@ -1,0 +1,15 @@
+{
+  "source_path": "test_corpus/gold/doc_045_legal_contract.txt",
+  "file_hash": "e731020687c056d6bf049f937aa1cddc51bf4978c423448d19d91092b4545536",
+  "ingested_at": "2026-08-04T08:07:13.130972+00:00",
+  "origin_filename": "doc_045_legal_contract.txt",
+  "title": "doc_045_legal_contract",
+  "classification": {
+    "status": "failed",
+    "classifier": "litellm",
+    "confidence": 0.0,
+    "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable.",
+    "llm_model": "gpt-3.5-turbo"
+  },
+  "classified_at": "2026-08-04T08:07:23.427192+00:00"
+}

@@ -1,0 +1,15 @@
+{
+  "source_path": "test_corpus/gold/doc_018_it_report.txt",
+  "file_hash": "23d2dec43e5cd7a0dda3b8fbbbb4c4ee010147cb6525959589f5eb9ca4a9561a",
+  "ingested_at": "2026-08-04T08:07:13.117331+00:00",
+  "origin_filename": "doc_018_it_report.txt",
+  "title": "doc_018_it_report",
+  "classification": {
+    "status": "failed",
+    "classifier": "litellm",
+    "confidence": 0.0,
+    "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable.",
+    "llm_model": "gpt-3.5-turbo"
+  },
+  "classified_at": "2026-08-04T08:07:23.300713+00:00"
+}

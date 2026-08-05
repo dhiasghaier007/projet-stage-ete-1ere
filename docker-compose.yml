@@ -28,8 +28,7 @@ services:
       - ./sample_docs:/data/source
       - ./processed:/data/processed
       - ./manifest.json:/data/manifest.json
-    # Runs once and exits — re-run manually with: docker compose run ingestion
-    # (not "up", since this isn't a long-lived service yet)
-
-volumes:
-  pgdata:
+      - ./test_corpus:/data/test_corpus
+      - ./processed_dev:/data/processed_dev
+    # Runs once and exits — re-run manually with:
+    # docker compose run ingestion

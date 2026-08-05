@@ -5,7 +5,7 @@ Responsibilities:
 - Read classified documents from Stage 2
 - Clean content (remove boilerplate, headers, footers)
 - Perform structure-aware chunking (split by headings, sections)
-- Detect and flag near-duplicates (deduplication)
+- Detect and skip exact near-duplicate chunks via SHA-256
 - Generate chunk-level metadata (section, source page, lineage)
 - Emit chunks + metadata ready for embedding
 
@@ -14,6 +14,7 @@ Run:
 """
 
 import argparse
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -70,6 +71,47 @@ def split_by_structure(content: str) -> list:
     return sections if sections else [("Document", content)]
 
 
+def clean_content(content: str) -> str:
+    """
+    Remove common boilerplate, repeated page numbers, and footer/header lines.
+    This is a shallow heuristic aimed at reducing noise before chunking.
+    """
+    patterns = [
+        r'^\s*Page\s+\d+(?:\s+of\s+\d+)?\s*$',
+        r'^\s*Confidential\s*$',
+        r'^\s*Draft\s*$',
+        r'^\s*[-=]{3,}\s*$',
+        r'^\s*Document\s+Title:\s*.*$',
+        r'^\s*Company\s+Name:\s*.*$',
+    ]
+    lines = content.splitlines()
+    cleaned_lines = []
+    for line in lines:
+        if any(re.match(pattern, line, re.IGNORECASE) for pattern in patterns):
+            continue
+        cleaned_lines.append(line)
+
+    # Collapse repeated blank lines and trim leading/trailing whitespace.
+    normalized = []
+    previous_blank = False
+    for line in cleaned_lines:
+        is_blank = not line.strip()
+        if is_blank and previous_blank:
+            continue
+        normalized.append(line.rstrip())
+        previous_blank = is_blank
+
+    return '\n'.join(normalized).strip()
+
+
+def chunk_hash(chunk_text: str) -> str:
+    """Return a stable SHA-256 hash for a chunk of text."""
+    h = hashlib.sha256()
+    normalized = ' '.join(chunk_text.split()).encode('utf-8')
+    h.update(normalized)
+    return h.hexdigest()
+
+
 def create_chunks(content: str, source_file: str, section: str = None, chunk_size: int = 512, overlap: int = 100) -> list:
     """
     Create chunks from content with sliding window overlap.
@@ -92,6 +134,7 @@ def run(classified_dir: Path, output_dir: Path, chunk_size: int = 512, overlap: 
     
     all_chunks = []
     chunk_counter = 0
+    seen_hashes = set()
     
     # Process each classified document
     for meta_file in sorted(classified_dir.glob("*.classified.json")):
@@ -110,9 +153,11 @@ def run(classified_dir: Path, output_dir: Path, chunk_size: int = 512, overlap: 
         department = meta.get("classification", {}).get("department", "General")
         sensitivity = meta.get("classification", {}).get("sensitivity", "Public")
         
-        # Structure-aware chunking
+        # Clean and structure-aware chunking
+        content = clean_content(content)
         sections = split_by_structure(content)
         
+        file_chunks = 0
         for section_title, section_content in sections:
             section_chunks = create_chunks(
                 section_content,
@@ -123,8 +168,14 @@ def run(classified_dir: Path, output_dir: Path, chunk_size: int = 512, overlap: 
             )
             
             for chunk_text in section_chunks:
+                chunk_signature = chunk_hash(chunk_text)
+                if chunk_signature in seen_hashes:
+                    continue
+                seen_hashes.add(chunk_signature)
+
                 chunk_id = f"chunk_{chunk_counter:05d}"
                 chunk_counter += 1
+                file_chunks += 1
                 
                 chunk = Chunk(
                     chunk_id=chunk_id,
@@ -139,7 +190,7 @@ def run(classified_dir: Path, output_dir: Path, chunk_size: int = 512, overlap: 
                 )
                 all_chunks.append(chunk)
         
-        print(f"  [chunked] {md_name} → {len(sections)} sections → {len(section_chunks)} chunks")
+        print(f"  [chunked] {md_name} → {len(sections)} sections → {file_chunks} unique chunks")
     
     # Write all chunks
     chunks_file = output_dir / "chunks.jsonl"

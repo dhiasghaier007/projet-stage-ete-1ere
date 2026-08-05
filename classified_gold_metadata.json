@@ -1,0 +1,832 @@
+{
+  "total_classified": 55,
+  "classifier": "litellm",
+  "records": [
+    {
+      "source_file": "doc_000_it_report.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.212987+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_001_legal_contract.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.218267+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_002_general_email.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.223590+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_003_general_email.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.229531+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_004_finance_invoice.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.234423+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_005_finance_invoice.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.238945+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_006_general_email.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.244119+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_007_it_report.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.250007+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_008_it_report.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.255694+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_009_finance_invoice.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.260276+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_010_finance_invoice.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.264287+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_011_finance_invoice.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.267883+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_012_general_email.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.271609+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_013_legal_contract.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.276156+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_014_legal_contract.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.280639+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_015_legal_contract.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.284863+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_016_legal_contract.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.289596+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_017_it_report.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.294463+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_018_it_report.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.300713+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_019_hr_policy.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.304876+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_020_it_report.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.310489+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_021_finance_invoice.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.314451+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_022_hr_policy.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.318636+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_023_legal_contract.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.323881+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_024_legal_contract.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.329156+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_025_hr_policy.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.335107+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_026_it_report.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.341244+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_027_finance_invoice.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.346410+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_028_finance_invoice.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.352344+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_029_legal_contract.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.357395+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_030_general_email.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.362184+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_031_it_report.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.366222+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_032_legal_contract.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.370060+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_033_legal_contract.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.376798+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_034_legal_contract.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.383038+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_035_it_report.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.388730+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_036_finance_invoice.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.395209+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_037_it_report.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.400250+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_038_general_email.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.404275+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_039_general_email.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.409007+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_040_hr_policy.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.413355+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_042_it_report.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.417442+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_043_finance_invoice.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.421734+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_045_legal_contract.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.427192+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_046_finance_invoice.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.431582+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_047_legal_contract.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.437253+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_048_general_email.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.446144+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_049_it_policy.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.452218+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_050_finance_invoice.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.457007+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_051_it_report.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.464541+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_053_finance_invoice.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.469628+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_055_hr_policy.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.476050+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_056_legal_contract.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.481433+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_057_finance_invoice.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.485717+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    },
+    {
+      "source_file": "doc_058_general_email.md",
+      "department": null,
+      "doc_type": null,
+      "language": null,
+      "sensitivity": null,
+      "confidence": 0.0,
+      "classified_at": "2026-08-04T08:07:23.491304+00:00",
+      "classifier": "litellm",
+      "rules_applied": [
+        "litellm_prompt"
+      ],
+      "status": "failed",
+      "error": "litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    }
+  ],
+  "processed_at": "2026-08-04T08:07:23.491740+00:00"
+}
