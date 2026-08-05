@@ -1,0 +1,5 @@
+{"filename": "doc_001_hr_policy_english.txt", "true_department": "HR", "true_doc_type": "Policy", "true_language": "EN", "true_sensitivity": "Confidential"}
+{"filename": "doc_002_finance_invoice_french.txt", "true_department": "Finance", "true_doc_type": "Invoice", "true_language": "FR", "true_sensitivity": "Internal"}
+{"filename": "doc_003_legal_contract_arabic.txt", "true_department": "Legal", "true_doc_type": "Contract", "true_language": "AR", "true_sensitivity": "Restricted"}
+{"filename": "doc_004_it_report_english.txt", "true_department": "IT", "true_doc_type": "Report", "true_language": "EN", "true_sensitivity": "Internal"}
+{"filename": "doc_005_general_email_french_arabic.txt", "true_department": "General", "true_doc_type": "Email", "true_language": "FR", "true_sensitivity": "Public"}

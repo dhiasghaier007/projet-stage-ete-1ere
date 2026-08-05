@@ -1,42 +1,53 @@
 """
 Classification module — Stage 2 of the Atlas-to-RAG pipeline.
-Uses a strict LLM-only classifier via LiteLLM Gateway.
+LLM-only classification via LiteLLM Gateway (OpenAI / Gemini / Ollama / DeepSeek etc).
 
-No heuristic fallback is used for actual classification. If the LLM fails
-(auth error, access denied, rate limit, etc.), the document is marked as
-failed and surfaced explicitly.
+The heuristic keyword classifier has been removed from the active pipeline.
+There is NO silent fallback: if the LLM call fails (bad key, access denied,
+rate limit, network error, etc.), that document is marked as UNCLASSIFIED
+and a clear, loud notification is printed and stored — nothing is quietly
+guessed at.
+
+Setup:
+    export LITELLM_MODEL_NAMES="gemini/gemini-3.5-flash-lite"   # or ollama/qwen3.6, gpt-4o-mini, etc.
+    export GEMINI_API_KEY="..."      # matching whichever provider you're using
+    export OLLAMA_API_BASE="http://<host>:11434"   # only needed for ollama/* models
+
+Run:
+    python classify.py --processed ./processed --output ./classified
 """
 
 import argparse
 import json
 import os
 import re
+import time
 from pathlib import Path
 from datetime import datetime, timezone
 from dataclasses import dataclass, asdict
 
-from dotenv import load_dotenv
-
-load_dotenv()
+# Free-tier Gemini models (e.g. gemini-3.5-flash-lite) are limited to ~15
+# requests/minute. A small delay between calls keeps us under that limit
+# instead of burning through the quota in the first few seconds.
+REQUEST_DELAY_SECONDS = float(os.getenv("CLASSIFY_REQUEST_DELAY", "4.5"))
 
 
 @dataclass
 class ClassificationRecord:
     source_file: str
-    department: str | None = None
-    doc_type: str | None = None
-    language: str | None = None
-    sensitivity: str | None = None
-    confidence: float = 0.0
-    classified_at: str | None = None
+    department: str
+    doc_type: str
+    language: str
+    sensitivity: str
+    confidence: float
+    classified_at: str
     classifier: str = "litellm"
-    rules_applied: list | None = None
-    status: str = "classified"
-    error: str | None = None
+    llm_model: str = ""
+    error: str = ""
 
 
 # ============================================================================
-# LLM-ONLY CLASSIFIER (Via LiteLLM Gateway)
+# LLM CLASSIFIER (Via LiteLLM Gateway) — the only classifier in the pipeline
 # ============================================================================
 
 def get_model_candidates() -> list[str]:
@@ -45,54 +56,125 @@ def get_model_candidates() -> list[str]:
         return [item.strip() for item in raw_value.split(",") if item.strip()]
 
     if os.getenv("GEMINI_API_KEY"):
-        return ["gemini/gemini-2.0-flash"]
+        return ["gemini/gemini-3.5-flash-lite"]
     if os.getenv("OPENAI_API_KEY"):
         return ["gpt-4o-mini"]
     return ["gpt-3.5-turbo"]
 
 
-def get_default_model_name() -> str:
-    return get_model_candidates()[0]
+def _is_rate_limited(exc: Exception) -> bool:
+    msg = str(exc).lower()
+    return "429" in msg or "resource_exhausted" in msg or "rate limit" in msg
+
+
+def _is_access_denied(exc: Exception) -> bool:
+    """Detect auth/permission-style failures so we can flag them distinctly."""
+    msg = str(exc).lower()
+    signals = [
+        "access denied", "unauthorized", "invalid api key", "invalid_api_key",
+        "authentication", "permission", "403", "401", "api key not valid",
+        "insufficient balance", "insufficient_quota",
+    ]
+    return any(s in msg for s in signals)
 
 
 def classify_document_litellm(markdown_content: str, filename: str) -> dict:
-    """Classify a document using the LLM only. On failure, return an explicit failure record."""
+    """
+    Call LLM via LiteLLM Gateway for classification. No fallback: on failure,
+    returns an explicit UNCLASSIFIED record carrying the real error.
+    """
     try:
         from litellm import completion
-    except ImportError as exc:
-        print("\n🚨 LLM classifier unavailable: LiteLLM is not installed.")
+    except ImportError:
         return {
-            "status": "failed",
-            "classifier": "litellm",
+            "department": "UNCLASSIFIED",
+            "doc_type": "UNCLASSIFIED",
+            "language": "UNCLASSIFIED",
+            "sensitivity": "UNCLASSIFIED",
             "confidence": 0.0,
-            "error": f"LiteLLM import failed: {exc}",
-            "llm_model": None,
+            "classifier": "llm_failed",
+            "llm_model": "",
+            "error": "litellm is not installed (pip install litellm)",
+            "access_denied": False,
         }
 
-    prompt = f"""You are classifying a document for a retrieval pipeline.
-Return ONLY valid JSON with no markdown fences and no extra text.
+    prompt = f"""You are an expert document classifier for an enterprise retrieval pipeline.
+Think briefly about the document, then return ONLY valid JSON with no markdown fences and no extra text after it.
+
+CLASSIFICATION RULES:
+1. Classify based on the PRIMARY SUBJECT MATTER of the document — what it is actually about.
+   Do NOT classify based on keywords that merely appear inside a data table, example, or
+   sample row (e.g. a table listing "HR" as one value among several departments is a
+   generic data table, not an HR document itself).
+2. For "language": base this STRICTLY on the actual language of the body text you are
+   reading right now. Ignore any language name, tag, or label mentioned in the content
+   or filename — judge only the real words in front of you.
+3. For "sensitivity", use this scale precisely:
+   - "Public": generic, non-sensitive content anyone could see (status reports, general emails).
+   - "Internal": routine business content not meant for outside the company, but not
+     legally or personally sensitive (internal memos, standard policies).
+   - "Confidential": contains business-sensitive specifics that would cause harm if
+     leaked (financial figures, strategic plans, personal employee data like salary).
+   - "Restricted": contains legally binding, privileged, or highly regulated content
+     (signed contracts, legal agreements, litigation material, regulatory filings) —
+     use this for legal documents even if they don't use the word "confidential".
+   Do not default to "Internal" just because a document is business-related, and do not
+   default to "Confidential" for a legal contract when "Restricted" is the better fit.
+
+EXAMPLES:
+
+Example A (data table, not a topic document):
+Content: "| dept | doc_type | language |\\n| HR | Policy | EN |\\n| Finance | Invoice | FR |"
+Correct output: {{"department": "General", "doc_type": "Data Table", "language": "EN", "sensitivity": "Public"}}
+(Reasoning: this is a generic sample/schema table, not an HR or Finance document — "HR" is a data value, not the topic.)
+
+Example B (real policy document):
+Content: "HR POLICY: Remote Work Guidelines. All employees may work remotely 3 days/week. For internal use only."
+Correct output: {{"department": "HR", "doc_type": "Policy", "language": "EN", "sensitivity": "Internal"}}
+
+Example C (plain public content, no sensitive markers):
+Content: "System Uptime Report — Week 38. Overall uptime: 99.38%. 38 incidents recorded, resolved within SLA."
+Correct output: {{"department": "IT", "doc_type": "Report", "language": "EN", "sensitivity": "Public"}}
+
+Example D (legal contract — use Restricted, not just Confidential):
+Content: "SERVICE AGREEMENT between Acme Corp and Beta LLC. This agreement and its terms are legally binding on both parties. Governing law: Delaware."
+Correct output: {{"department": "Legal", "doc_type": "Contract", "language": "EN", "sensitivity": "Restricted"}}
+(Reasoning: signed/binding legal agreements are Restricted, a stronger tier than Confidential.)
+
+Now classify this real document:
 
 Filename: {filename}
 
-Content (first 800 chars):
-{markdown_content[:800]}
+Content (first 1500 chars):
+{markdown_content[:1500]}
 
-Return exactly this JSON object:
+Return exactly this JSON object, with a confidence 0.0-1.0 reflecting how sure you actually are:
 {{
   "department": "HR" | "Finance" | "Legal" | "IT" | "General",
-  "doc_type": "Policy" | "Invoice" | "Report" | "Contract" | "Data Table" | "Document",
+  "doc_type": "Policy" | "Invoice" | "Report" | "Contract" | "Data Table" | "Document" | "Email",
   "language": "EN" | "FR" | "AR" | "ES",
-  "sensitivity": "Public" | "Internal" | "Confidential" | "Restricted"
+  "sensitivity": "Public" | "Internal" | "Confidential" | "Restricted",
+  "confidence": 0.0
 }}"""
 
+    completion_kwargs = {}
     last_error = None
+    last_model = None
+
     for model_name in get_model_candidates():
+        last_model = model_name
+        if model_name.startswith("ollama/"):
+            completion_kwargs = {"api_base": os.getenv("OLLAMA_API_BASE", "http://localhost:11434")}
+        else:
+            completion_kwargs = {}
+
         try:
             response = completion(
                 model=model_name,
                 messages=[{"role": "user", "content": prompt}],
-                temperature=0.3,
-                timeout=15,
+                temperature=0.1,
+                timeout=180,
+                **completion_kwargs,
             )
 
             response_text = response.choices[0].message.content.strip()
@@ -102,26 +184,92 @@ Return exactly this JSON object:
                 cleaned = re.sub(r'\s*```$', '', cleaned)
             json_match = re.search(r'\{.*\}', cleaned, re.DOTALL)
             if not json_match:
-                raise ValueError("No valid JSON in response")
+                raise ValueError("No valid JSON in LLM response")
 
             result = json.loads(json_match.group())
-            result["confidence"] = 0.92
-            result["classifier"] = "litellm"
-            result["llm_model"] = model_name
-            result["status"] = "classified"
-            return result
+            self_reported_confidence = result.get("confidence")
+            try:
+                confidence = float(self_reported_confidence)
+                if not (0.0 <= confidence <= 1.0):
+                    confidence = 0.85
+            except (TypeError, ValueError):
+                confidence = 0.85  # model didn't return a usable confidence
+
+            return {
+                "department": result.get("department", "UNCLASSIFIED"),
+                "doc_type": result.get("doc_type", "UNCLASSIFIED"),
+                "language": result.get("language", "UNCLASSIFIED"),
+                "sensitivity": result.get("sensitivity", "UNCLASSIFIED"),
+                "confidence": confidence,
+                "classifier": "litellm",
+                "llm_model": model_name,
+                "error": "",
+                "access_denied": False,
+            }
 
         except Exception as exc:
             last_error = exc
-            print(f"🚨 LLM classification failed for {filename} with model {model_name}: {exc}")
+            if _is_rate_limited(exc):
+                print(f"⏳ RATE LIMITED for {filename} on '{model_name}' — waiting 20s and retrying once...")
+                time.sleep(20)
+                try:
+                    response = completion(
+                        model=model_name,
+                        messages=[{"role": "user", "content": prompt}],
+                        temperature=0.1,
+                        timeout=180,
+                        **completion_kwargs,
+                    )
+                    response_text = response.choices[0].message.content.strip()
+                    cleaned = response_text.strip()
+                    if cleaned.startswith("```"):
+                        cleaned = re.sub(r'^```(?:json)?\s*', '', cleaned)
+                        cleaned = re.sub(r'\s*```$', '', cleaned)
+                    json_match = re.search(r'\{.*\}', cleaned, re.DOTALL)
+                    if not json_match:
+                        raise ValueError("No valid JSON in LLM response")
+                    result = json.loads(json_match.group())
+                    self_reported_confidence = result.get("confidence")
+                    try:
+                        confidence = float(self_reported_confidence)
+                        if not (0.0 <= confidence <= 1.0):
+                            confidence = 0.85
+                    except (TypeError, ValueError):
+                        confidence = 0.85
+                    return {
+                        "department": result.get("department", "UNCLASSIFIED"),
+                        "doc_type": result.get("doc_type", "UNCLASSIFIED"),
+                        "language": result.get("language", "UNCLASSIFIED"),
+                        "sensitivity": result.get("sensitivity", "UNCLASSIFIED"),
+                        "confidence": confidence,
+                        "classifier": "litellm",
+                        "llm_model": model_name,
+                        "error": "",
+                        "access_denied": False,
+                    }
+                except Exception as retry_exc:
+                    last_error = retry_exc
+                    print(f"❌ Retry also failed for {filename}: {retry_exc}")
 
-    print("🚨 All configured LLM models failed; marking document as failed.")
+            denied = _is_access_denied(exc)
+            tag = "🔒 ACCESS DENIED" if denied else "⚠️  LLM CALL FAILED"
+            print(f"{tag} for {filename} using model '{model_name}': {exc}")
+            if len(get_model_candidates()) > 1:
+                print("   Trying next configured model...")
+
+    # Every candidate model failed — no heuristic fallback, be loud about it.
+    denied = _is_access_denied(last_error) if last_error else False
+    print(f"❌ Classification FAILED for {filename} — document is UNCLASSIFIED.")
     return {
-        "status": "failed",
-        "classifier": "litellm",
+        "department": "UNCLASSIFIED",
+        "doc_type": "UNCLASSIFIED",
+        "language": "UNCLASSIFIED",
+        "sensitivity": "UNCLASSIFIED",
         "confidence": 0.0,
+        "classifier": "llm_failed",
+        "llm_model": last_model or "",
         "error": str(last_error),
-        "llm_model": get_model_candidates()[-1],
+        "access_denied": denied,
     }
 
 
@@ -129,21 +277,27 @@ Return exactly this JSON object:
 # PIPELINE
 # ============================================================================
 
-def run(processed_dir: Path, output_dir: Path, metadata_path: Path, use_llm: bool = True) -> None:
+def run(processed_dir: Path, output_dir: Path, metadata_path: Path) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     classified_records = []
-    classifier_name = "litellm"
+    failed_count = 0
+    access_denied_count = 0
 
     for md_file in sorted(processed_dir.glob("*.md")):
-        markdown_content = md_file.read_text(encoding="utf-8", errors="ignore")
+        markdown_content = md_file.read_text()
 
         meta_file = md_file.with_suffix(".meta.json")
         stage1_meta = {}
         if meta_file.exists():
-            stage1_meta = json.loads(meta_file.read_text(encoding="utf-8"))
+            stage1_meta = json.loads(meta_file.read_text())
 
         classification = classify_document_litellm(markdown_content, md_file.name)
+
+        if classification["classifier"] == "llm_failed":
+            failed_count += 1
+            if classification.get("access_denied"):
+                access_denied_count += 1
 
         enriched_meta = {
             **stage1_meta,
@@ -152,41 +306,48 @@ def run(processed_dir: Path, output_dir: Path, metadata_path: Path, use_llm: boo
         }
 
         out_meta_file = output_dir / md_file.with_suffix(".classified.json").name
-        out_meta_file.write_text(json.dumps(enriched_meta, indent=2), encoding="utf-8")
+        out_meta_file.write_text(json.dumps(enriched_meta, indent=2))
 
         out_md_file = output_dir / md_file.name
-        out_md_file.write_text(markdown_content, encoding="utf-8")
+        out_md_file.write_text(markdown_content)
 
         record = ClassificationRecord(
             source_file=md_file.name,
-            department=classification.get("department"),
-            doc_type=classification.get("doc_type"),
-            language=classification.get("language"),
-            sensitivity=classification.get("sensitivity"),
-            confidence=classification.get("confidence", 0.0),
+            department=classification["department"],
+            doc_type=classification["doc_type"],
+            language=classification["language"],
+            sensitivity=classification["sensitivity"],
+            confidence=classification["confidence"],
             classified_at=enriched_meta["classified_at"],
-            classifier=classification.get("classifier", "litellm"),
-            rules_applied=["litellm_prompt"],
-            status=classification.get("status", "classified"),
-            error=classification.get("error"),
+            classifier=classification["classifier"],
+            llm_model=classification.get("llm_model", ""),
+            error=classification.get("error", ""),
         )
         classified_records.append(asdict(record))
 
-        print(f"  🤖 [{classifier_name:10s}] {md_file.name:25s} → {classification.get('status', 'classified')}")
+        symbol = "🤖" if classification["classifier"] == "litellm" else "❌"
+        print(f"  {symbol} [{classification['classifier']:12s}] {md_file.name:30s} → {record.department:12s} | {record.doc_type:15s} | {record.sensitivity}")
+
+        time.sleep(REQUEST_DELAY_SECONDS)
 
     summary = {
         "total_classified": len(classified_records),
-        "classifier": classifier_name,
+        "failed": failed_count,
+        "access_denied": access_denied_count,
+        "classifier": "litellm",
         "records": classified_records,
         "processed_at": datetime.now(timezone.utc).isoformat(),
     }
-    metadata_path.write_text(json.dumps(summary, indent=2), encoding="utf-8")
+    metadata_path.write_text(json.dumps(summary, indent=2))
 
-    print(f"\n✅ Classification complete ({classifier_name}). {len(classified_records)} documents classified.")
+    print(f"\n✅ Classification run complete. {len(classified_records)} documents processed, "
+          f"{failed_count} failed ({access_denied_count} access-denied).")
+    if access_denied_count > 0:
+        print("🔒 One or more documents failed due to ACCESS DENIED — check your API key / model config.")
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Classification stage: add metadata to documents using the LLM only.")
+    parser = argparse.ArgumentParser(description="Classification stage: LLM-only classification via LiteLLM.")
     parser.add_argument("--processed", required=True, help="Folder with Stage 1 outputs (.md + .meta.json)")
     parser.add_argument("--output", required=True, help="Folder to write enriched .classified.json files")
     parser.add_argument("--metadata", default="classified_metadata.json", help="Summary metadata file")
