@@ -9,7 +9,7 @@ from pathlib import Path
 from datetime import datetime
 
 # Create test output directory
-TEST_DIR = Path("./test_multilingual_samples")
+TEST_DIR = Path("./data/samples/multilingual")
 TEST_DIR.mkdir(exist_ok=True)
 
 # Define 5 carefully crafted test documents with real content

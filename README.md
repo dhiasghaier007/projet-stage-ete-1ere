@@ -31,18 +31,18 @@ Stage 1: Ingestion          Stage 2: Classification    Stage 3: RAG Prep        
 
 ```bash
 # Run all 3 stages with demo data (heuristic, no LLM setup needed)
-python3 ingestion/ingestion.py --source ./sample_docs --output ./processed --manifest ./manifest.json
-python3 classification/classify.py --processed ./processed --output ./classified
-python3 chunking/chunking.py --classified ./classified --output ./chunks
+python3 src/ingestion/ingestion.py --source data/samples/multilingual --output data/processed --manifest data/manifests/manifest_multilingual.json
+python3 src/classification/classify.py --processed data/processed --output data/classified --metadata data/classified/classified_multilingual_metadata.json
+python3 src/chunking/chunking.py --classified data/classified --output data/chunks
 ```
 
 **See results immediately:**
 ```bash
 # View evaluated accuracy
-python3 classification/eval_classifiers.py --verbose
+python3 src/classification/eval_classifiers.py --verbose
 
 # View final chunks
-cat chunks/chunks.jsonl | python3 -m json.tool | head -20
+cat data/chunks/chunks.jsonl | python3 -m json.tool | head -20
 ```
 
 **📚 Testing Guides:**

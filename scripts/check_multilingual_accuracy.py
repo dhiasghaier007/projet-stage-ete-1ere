@@ -7,8 +7,8 @@ Run after ingestion + classification:
 import json
 from pathlib import Path
 
-GROUND_TRUTH = Path("test_multilingual_samples/metadata.jsonl")
-CLASSIFIED_DIR = Path("classified_multilingual")
+GROUND_TRUTH = Path("data/samples/multilingual/metadata.jsonl")
+CLASSIFIED_DIR = Path("data/classified")
 
 FIELDS = [("true_department", "department"), ("true_doc_type", "doc_type"),
           ("true_language", "language"), ("true_sensitivity", "sensitivity")]
