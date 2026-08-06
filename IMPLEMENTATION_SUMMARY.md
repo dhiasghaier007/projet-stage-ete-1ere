@@ -1,83 +1,13 @@
-# ✅ Implementation Summary: Heuristic + LiteLLM Classifiers
+# Implementation Summary
 
-## What Was Added
+This file has been reduced to a short pointer so the project uses one canonical guide: [README.md](README.md).
 
-### 1. **Enhanced `classification/classify.py`** (Dual Classifier)
-- ✅ **Heuristic classifier** (original, kept as fallback)
-  - Fast, free, offline
-  - ~75% accuracy on diverse documents
-  - Keyword spotting for department, type, language, sensitivity
-  
-- ✅ **LiteLLM classifier** (new, production-ready)
-  - ~92% accuracy
-  - Supports OpenAI, Ollama, Cohere, Anthropic, local models
-  - Automatic fallback to heuristic if LLM fails
-  - Command: `python classify.py --processed ./processed --output ./classified --use_llm`
+Please refer to the root README for:
+- setup and environment configuration
+- ingestion and classification commands
+- multilingual sample workflow
+- troubleshooting and usage notes
 
-### 2. **New `classification/eval_classifiers.py`** (Evaluation Framework)
-- ✅ Labeled test dataset (6 documents with known correct labels)
-- ✅ Compares both classifiers head-to-head
-- ✅ Computes accuracy per field (department, doc_type, language, sensitivity)
-- ✅ Generates pretty report with confusion matrix
-- ✅ Ties into Stage 5 (QA) evaluation framework
-- Command: `python eval_classifiers.py --use_llm --verbose`
-
-### 3. **New `classification/README.md`** (Documentation)
-- ✅ Complete setup guide for both classifiers
-- ✅ LiteLLM backend options with examples
-- ✅ Fallback behavior explanation
-- ✅ Production recommendations
-- ✅ Environment variable reference
-
-### 4. **New `TESTING_GUIDE.md`** (End-to-End Testing)
-- ✅ Complete workflow to test Stages 1-3
-- ✅ Quick demo (5 minutes, no setup)
-- ✅ LiteLLM setup instructions (OpenAI, Ollama)
-- ✅ Expected results table
-- ✅ Troubleshooting guide
-
----
-
-## Architecture
-
-```
-Input Documents (Stage 1: processed/)
-  ↓
-Classification (Stage 2)
-  ├─ Option A: Heuristic (fast, free, 75% accuracy)
-  │   └─ Keywords: "policy" → HR, "invoice" → Finance, etc.
-  │
-  └─ Option B: LiteLLM (accurate, 92%, fallback-safe)
-      ├─ OpenAI: gpt-3.5-turbo (cheap, $0.01 per doc)
-      ├─ Ollama: mistral (free, local)
-      ├─ Cohere: command (alternative)
-      └─ Auto-fallback to heuristic if LLM fails
-  ↓
-Output: classified/ (enriched metadata)
-  ├─ department: HR | Finance | Legal | IT | General
-  ├─ doc_type: Policy | Invoice | Report | Contract | Data Table | Document
-  ├─ language: EN | FR | AR | ES
-  ├─ sensitivity: Public | Internal | Confidential | Restricted
-  ├─ confidence: 0.75 (heuristic) or 0.92 (LLM)
-  └─ classifier: "heuristic" or "litellm"
-  ↓
-Evaluation Framework (eval_classifiers.py)
-  ├─ Test set: 6 labeled documents
-  ├─ Metrics: Overall accuracy + per-field breakdown
-  ├─ Report: comparison of both classifiers
-  └─ Output: classification_eval_report.txt
-```
-
----
-
-## Files Created/Modified
-
-| File | Status | Purpose |
-|------|--------|---------|
-| `classification/classify.py` | ✅ Enhanced | Dual heuristic + LiteLLM |
-| `classification/eval_classifiers.py` | ✅ New | Evaluation framework with test data |
-| `classification/README.md` | ✅ New | Complete setup guide |
-| `TESTING_GUIDE.md` | ✅ New | End-to-end testing workflow |
 
 ---
 

@@ -1,83 +1,15 @@
-# 🧪 RAG Pipeline Testing Guide
+# Testing Guide
 
-Complete guide to test all stages (1–3) with **visible, measurable results**. Includes heuristic vs LLM comparison.
+This file has been simplified. Please use the main project guide at [README.md](README.md) for setup, usage, and workflow instructions.
 
----
-
-## 📊 What You Get
-
-This guide shows how to:
-1. ✅ **Run Stage 1** (Ingestion) → See Markdown extraction
-2. ✅ **Run Stage 2** (Classification) → See heuristic vs LLM accuracy
-3. ✅ **Run Stage 3** (Chunking) → See structure-aware splitting
-4. 📊 **Compare classifiers** → Heuristic (75%) vs LLM (92%)
-
----
-
-## 🚀 Quick Demo (5 minutes, no setup)
-
-### Test Stage 1: Ingestion
-```bash
-cd /home/dhia/Downloads/rag_project
-
-python3 ingestion/ingestion.py \
-  --source ./sample_docs \
-  --output ./processed \
-  --manifest ./manifest.json
-```
-
-**Output:**
-```
-  [new] test.csv → ./processed/test.md
-  [new] financial_statement.html → ./processed/financial_statement.md
-  [new] hr_remote_policy.txt → ./processed/hr_remote_policy.md
-
-Done. new=3 updated=0 unchanged=0 errors=0
-```
-
-**View result:**
-```bash
-cat processed/test.md
-cat processed/financial_statement.md | head -20
-```
-
----
-
-### Test Stage 2a: Classification (Heuristic)
-```bash
-python3 classification/classify.py \
-  --processed ./processed \
-  --output ./classified_heuristic \
-  --metadata ./classified_heuristic_metadata.json
-```
-
-**Output:**
-```
-  ⚡ [heuristic  ] financial_statement.md    → Finance    | Financial Report | Public
-  ⚡ [heuristic  ] hr_remote_policy.md       → HR         | Policy          | Public
-  ⚡ [heuristic  ] test.md                   → HR         | Policy          | Public
-
-✅ Classification complete (heuristic). 3 documents classified.
-```
-
-**View result:**
-```bash
-cat classified_heuristic/financial_statement.classified.json | python3 -m json.tool
-```
-
----
-
-### Test Stage 2b: Evaluate Classifier Accuracy
-
-See how heuristic performs on a **labeled test dataset**:
+For the current multilingual workflow, the primary commands are:
 
 ```bash
-python3 classification/eval_classifiers.py --verbose
+python3 ingestion/ingestion.py --source test_multilingual_samples --output processed_multilingual --manifest manifest_multilingual.json
+python3 classification/classify.py --processed processed_multilingual --output classified_multilingual --metadata classified_multilingual_metadata.json
+python3 scripts/check_multilingual_accuracy.py
 ```
 
-**Output:**
-```
-🧪 Classification Evaluation
 Test set size: 6 documents
 
 Running heuristic classifier...

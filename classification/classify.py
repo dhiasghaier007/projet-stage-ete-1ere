@@ -32,7 +32,7 @@ except ImportError:  # pragma: no cover - dependency may be absent
     def load_dotenv() -> bool:
         return False
 
-load_dotenv()
+load_dotenv(dotenv_path=Path(__file__).resolve().parents[1] / ".env", override=True)
 
 # Free-tier Gemini models (e.g. gemini-3.5-flash-lite) are limited to ~15
 # requests/minute. A small delay between calls keeps us under that limit
@@ -61,13 +61,17 @@ class ClassificationRecord:
 def get_model_candidates() -> list[str]:
     raw_value = os.getenv("LITELLM_MODEL_NAMES") or os.getenv("LITELLM_MODEL_NAME")
     if raw_value:
-        return [item.strip() for item in raw_value.split(",") if item.strip()]
+        parsed = [item.strip() for item in raw_value.split(",") if item.strip()]
+        if parsed:
+            return parsed
 
+    candidates: list[str] = ["ollama/qwen3.6"]
     if os.getenv("GEMINI_API_KEY"):
-        return ["gemini/gemini-3.5-flash-lite"]
+        candidates.append("gemini/gemini-3.5-flash-lite")
     if os.getenv("OPENAI_API_KEY"):
-        return ["gpt-4o-mini"]
-    return ["gpt-3.5-turbo"]
+        candidates.append("gpt-4o-mini")
+
+    return candidates
 
 
 def _is_rate_limited(exc: Exception) -> bool:

@@ -1,0 +1,19 @@
+{
+  "source_path": "test_multilingual_samples/doc_004_it_report_english.txt",
+  "file_hash": "8d534120226ed3434bc030ef594974324edbd4cbff5359ae927a559c6240d9f1",
+  "ingested_at": "2026-08-06T10:06:25.752532+00:00",
+  "origin_filename": "doc_004_it_report_english.txt",
+  "title": "doc_004_it_report_english",
+  "classification": {
+    "department": "IT",
+    "doc_type": "Report",
+    "language": "EN",
+    "sensitivity": "Public",
+    "confidence": 0.95,
+    "classifier": "litellm",
+    "llm_model": "ollama/qwen3.6",
+    "error": "",
+    "access_denied": false
+  },
+  "classified_at": "2026-08-06T10:22:26.118918+00:00"
+}

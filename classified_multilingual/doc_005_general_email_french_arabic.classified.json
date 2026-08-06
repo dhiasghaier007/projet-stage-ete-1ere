@@ -1,0 +1,19 @@
+{
+  "source_path": "test_multilingual_samples/doc_005_general_email_french_arabic.txt",
+  "file_hash": "d264fb9821c7a1706902a2dc90c62f3c8a1b28f04bf02b299439fd31c29bf472",
+  "ingested_at": "2026-08-06T10:06:25.752675+00:00",
+  "origin_filename": "doc_005_general_email_french_arabic.txt",
+  "title": "doc_005_general_email_french_arabic",
+  "classification": {
+    "department": "General",
+    "doc_type": "Email",
+    "language": "FR",
+    "sensitivity": "Internal",
+    "confidence": 0.95,
+    "classifier": "litellm",
+    "llm_model": "ollama/qwen3.6",
+    "error": "",
+    "access_denied": false
+  },
+  "classified_at": "2026-08-06T10:23:36.861880+00:00"
+}

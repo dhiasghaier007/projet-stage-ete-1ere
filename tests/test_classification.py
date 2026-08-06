@@ -15,6 +15,13 @@ class LLMOnlyClassificationTests(unittest.TestCase):
                 ["ollama/mistral", "gemini/gemini-2.0-flash"],
             )
 
+    def test_get_model_candidates_prefers_ollama_and_adds_key_based_backends(self):
+        with patch.dict(os.environ, {"GEMINI_API_KEY": "valid-key", "OPENAI_API_KEY": "valid-key"}, clear=True):
+            self.assertEqual(
+                get_model_candidates(),
+                ["ollama/qwen3.6", "gemini/gemini-3.5-flash-lite", "gpt-4o-mini"],
+            )
+
     def test_classify_document_litellm_falls_back_to_heuristic_when_llm_errors(self):
         def fake_completion(*args, **kwargs):
             raise RuntimeError("AuthenticationError: invalid api key")

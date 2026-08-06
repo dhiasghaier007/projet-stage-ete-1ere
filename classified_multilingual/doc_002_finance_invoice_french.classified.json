@@ -1,0 +1,19 @@
+{
+  "source_path": "test_multilingual_samples/doc_002_finance_invoice_french.txt",
+  "file_hash": "ea904bef2f751f022711eeb5e4270cdb3aed1c0c5c5b9a51811b392a79685f21",
+  "ingested_at": "2026-08-06T10:06:25.751873+00:00",
+  "origin_filename": "doc_002_finance_invoice_french.txt",
+  "title": "doc_002_finance_invoice_french",
+  "classification": {
+    "department": "Finance",
+    "doc_type": "Invoice",
+    "language": "FR",
+    "sensitivity": "Confidential",
+    "confidence": 0.95,
+    "classifier": "litellm",
+    "llm_model": "ollama/qwen3.6",
+    "error": "",
+    "access_denied": false
+  },
+  "classified_at": "2026-08-06T10:19:27.754071+00:00"
+}

@@ -1,0 +1,69 @@
+{
+  "total_classified": 5,
+  "failed": 0,
+  "access_denied": 0,
+  "classifier": "litellm",
+  "records": [
+    {
+      "source_file": "doc_001_hr_policy_english.md",
+      "department": "HR",
+      "doc_type": "Policy",
+      "language": "EN",
+      "sensitivity": "Internal",
+      "confidence": 0.95,
+      "classified_at": "2026-08-06T10:18:15.718884+00:00",
+      "classifier": "litellm",
+      "llm_model": "ollama/qwen3.6",
+      "error": ""
+    },
+    {
+      "source_file": "doc_002_finance_invoice_french.md",
+      "department": "Finance",
+      "doc_type": "Invoice",
+      "language": "FR",
+      "sensitivity": "Confidential",
+      "confidence": 0.95,
+      "classified_at": "2026-08-06T10:19:27.754071+00:00",
+      "classifier": "litellm",
+      "llm_model": "ollama/qwen3.6",
+      "error": ""
+    },
+    {
+      "source_file": "doc_003_legal_contract_arabic.md",
+      "department": "Legal",
+      "doc_type": "Contract",
+      "language": "AR",
+      "sensitivity": "Restricted",
+      "confidence": 0.95,
+      "classified_at": "2026-08-06T10:20:36.413224+00:00",
+      "classifier": "litellm",
+      "llm_model": "ollama/qwen3.6",
+      "error": ""
+    },
+    {
+      "source_file": "doc_004_it_report_english.md",
+      "department": "IT",
+      "doc_type": "Report",
+      "language": "EN",
+      "sensitivity": "Public",
+      "confidence": 0.95,
+      "classified_at": "2026-08-06T10:22:26.118918+00:00",
+      "classifier": "litellm",
+      "llm_model": "ollama/qwen3.6",
+      "error": ""
+    },
+    {
+      "source_file": "doc_005_general_email_french_arabic.md",
+      "department": "General",
+      "doc_type": "Email",
+      "language": "FR",
+      "sensitivity": "Internal",
+      "confidence": 0.95,
+      "classified_at": "2026-08-06T10:23:36.861880+00:00",
+      "classifier": "litellm",
+      "llm_model": "ollama/qwen3.6",
+      "error": ""
+    }
+  ],
+  "processed_at": "2026-08-06T10:23:41.369104+00:00"
+}
