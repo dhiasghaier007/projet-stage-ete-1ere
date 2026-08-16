@@ -4,10 +4,10 @@ Scores classify.py output against the real gold_labels.jsonl ground truth.
 
 Unlike eval_classifiers.py (which uses its own small hardcoded test set),
 this reads your ACTUAL classified_gold/*.classified.json output and compares
-it field-by-field against test_corpus/gold/gold_labels.jsonl.
+it field-by-field against data/samples/multilingual/metadata.jsonl.
 
 Run:
-    python score_against_gold.py --classified ../classified_gold --labels ../test_corpus/gold/gold_labels.jsonl
+    python score_against_gold.py --classified ../classified_gold --labels ../data/samples/multilingual/metadata.jsonl
 """
 
 import argparse

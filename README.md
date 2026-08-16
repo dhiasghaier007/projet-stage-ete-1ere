@@ -224,14 +224,23 @@ python chunking/chunking.py \
 
 ## 🧬 Stage 4: Vector Indexing
 
-*(Coming soon — currently in progress)*
+**What it does now:**
+- Reads chunk JSONL from Stage 3
+- Builds deterministic local embeddings for each chunk
+- Writes a reusable local index artifact for retrieval
+- Optionally stores vectors in pgvector if a PostgreSQL DSN is provided
+- Supports a lightweight HNSW-style index path via PostgreSQL when the extension is available
 
-**What it will do:**
-- Read chunks from Stage 3
-- Generate embeddings via LiteLLM Gateway (OpenAI, Cohere, or local model)
-- Store vectors in pgvector (PostgreSQL extension)
-- Organize into collections by department for **access control**
-- Create HNSW indexes for fast retrieval
+**Run locally:**
+```bash
+python3 src/indexing/index_cli.py --chunks data/chunks/chunks.jsonl --output data/indexing
+```
+
+**Optional pgvector storage:**
+```bash
+export PGVECTOR_DSN="postgresql://rag_user:rag_password@localhost:5432/rag_db"
+python3 src/indexing/index_cli.py --chunks data/chunks/chunks.jsonl --output data/indexing --pgvector-dsn "$PGVECTOR_DSN"
+```
 
 **Structure:**
 ```sql
@@ -252,13 +261,15 @@ rag_db=# \d vectors
 
 ## ✅ Stage 5: Quality Assurance
 
-*(Coming soon — currently in progress)*
+**What it does now:**
+- Answers questions by retrieving relevant chunks from the indexed corpus
+- Returns the retrieved chunk set plus a lightweight evaluation report
+- Produces a simple context precision metric for quick QA benchmarking
 
-**What it will do:**
-- Run **RAGAS evaluation** on retrieval + generation quality
-- Measure precision@k, recall@k, MRR
-- Build gold-standard Q&A dataset for benchmarking
-- Track drift over time
+**Run locally:**
+```bash
+python3 src/qa/qa_cli.py --index data/indexing/local_index.json --question "What is the remote work policy about?" --top_k 3
+```
 
 ---
 

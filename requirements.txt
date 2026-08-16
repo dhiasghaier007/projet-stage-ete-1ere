@@ -1,1 +1,11 @@
+# Core
 python-dotenv
+litellm
+
+# Hybrid retrieval (Stage 4/5)
+rank_bm25
+langdetect
+
+# Optional: needed for Postgres/pgvector storage (--pgvector-dsn)
+psycopg[binary]
+pgvector

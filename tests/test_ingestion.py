@@ -2,7 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ingestion.ingestion import discover_files, prepare_metadata_for_json
+from src.ingestion.ingestion import discover_files, prepare_metadata_for_json
 
 
 class DummyCallable:
