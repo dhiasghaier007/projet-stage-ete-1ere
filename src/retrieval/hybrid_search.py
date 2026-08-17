@@ -13,7 +13,10 @@ comparable scales) — it only uses each result's *rank position* in each list.
 import re
 from typing import Any, Dict, List, Optional, Tuple
 
-from src.retrieval.access_control import DEFAULT_CLEARANCE, filter_chunks_by_clearance
+from src.retrieval.access_control import (
+    DEFAULT_CLEARANCE, filter_chunks_by_clearance,
+    ALL_DEPARTMENTS, filter_chunks_by_department,
+)
 
 try:
     from rank_bm25 import BM25Okapi
@@ -68,23 +71,31 @@ def hybrid_search(
     candidate_k: int = 30,
     rrf_k: int = 60,
     clearance: str = DEFAULT_CLEARANCE,
+    departments: Any = ALL_DEPARTMENTS,
 ) -> Tuple[List[Dict[str, Any]], str]:
     """Fuse semantic + lexical rankings via RRF. Returns (results, retrieval_mode)
     where retrieval_mode is "hybrid_rrf" or "semantic_only" (if BM25 unavailable) —
     surfaced explicitly rather than silently degrading to one retriever.
 
-    `clearance` enforces sensitivity-based access control: chunks the caller
-    isn't cleared for are removed BEFORE ranking/fusion, not filtered out of
-    an already-ranked result afterward. This matters because even just
-    knowing a Restricted chunk ranked highly for a query is itself a signal
-    ("something confidential exists about X") — so the disallowed chunks
-    never enter the candidate pool that produces rrf_score or rank position
-    in the first place.
+    `clearance` enforces sensitivity-based access control, and `departments`
+    enforces department isolation — two independent filters, both applied
+    BEFORE ranking/fusion, not on an already-ranked result afterward. This
+    matters because even just knowing a chunk ranked highly for a query is
+    itself a signal ("something confidential/from another department exists
+    about X") — so disallowed chunks never enter the candidate pool that
+    produces rrf_score or rank position in the first place.
+
+    `departments` defaults to ALL_DEPARTMENTS (unrestricted) so existing
+    callers that don't pass it keep today's behavior — department isolation
+    is opt-in at the call site, same pattern as clearance defaulting to
+    DEFAULT_CLEARANCE rather than the most permissive level.
     """
     allowed_payloads = filter_chunks_by_clearance(index._payloads, clearance)
+    allowed_payloads = filter_chunks_by_department(allowed_payloads, departments)
 
     semantic_candidates_raw = index.search(query, top_k=candidate_k)
     semantic_candidates = filter_chunks_by_clearance(semantic_candidates_raw, clearance)
+    semantic_candidates = filter_chunks_by_department(semantic_candidates, departments)
     semantic_rank_list = [item["chunk_id"] for item in semantic_candidates]
     by_id = {item["chunk_id"]: item for item in semantic_candidates}
 

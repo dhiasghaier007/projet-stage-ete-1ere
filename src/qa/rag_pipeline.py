@@ -16,7 +16,7 @@ load_dotenv(dotenv_path=Path(__file__).resolve().parents[2] / ".env", override=T
 from src.indexing.index_vectors import LocalVectorIndex
 from src.retrieval.hybrid_search import hybrid_search
 from src.retrieval.postgres_hybrid import hybrid_search_pg
-from src.retrieval.access_control import DEFAULT_CLEARANCE, filter_history_by_clearance
+from src.retrieval.access_control import DEFAULT_CLEARANCE, filter_history_by_clearance, ALL_DEPARTMENTS
 
 try:
     from langdetect import detect as _langdetect_detect, DetectorFactory
@@ -435,6 +435,7 @@ def answer_question(
     pgvector_dsn: Optional[str] = None,
     conversation_history: Optional[list[Dict[str, str]]] = None,
     clearance: str = DEFAULT_CLEARANCE,
+    departments: Any = ALL_DEPARTMENTS,
 ) -> Dict[str, Any]:
     """Answer `question` using retrieval + LLM generation.
 
@@ -454,6 +455,12 @@ def answer_question(
     `conversation_history` (see filter_history_by_clearance) before it's
     used for query rewriting or generation, so memory can never become a
     side-channel around the retrieval access-control filter.
+
+    `departments` is the caller's department access — a list of department
+    names, or ALL_DEPARTMENTS (the default) for unrestricted access. Unlike
+    clearance, this defaults to unrestricted rather than a narrow default,
+    since department isolation is opt-in per caller (see access_control.py
+    for why "General"/unlabeled content is always visible regardless).
 
     Bare greetings/small talk (see _SMALLTALK_PATTERNS) skip retrieval
     entirely and get a short friendly reply instead — running a document
@@ -482,7 +489,7 @@ def answer_question(
     rewrite_result = rewrite_query_with_history(question, visible_history)
     retrieval_query = rewrite_result["query"]
 
-    pg_result = hybrid_search_pg(retrieval_query, top_k=top_k, dsn=pgvector_dsn, clearance=clearance)
+    pg_result = hybrid_search_pg(retrieval_query, top_k=top_k, dsn=pgvector_dsn, clearance=clearance, departments=departments)
     if pg_result is not None:
         results, retrieval_mode = pg_result
     else:
@@ -495,7 +502,7 @@ def answer_question(
             index._ids.append(chunk_id)
             index._vectors.append(vector)
             index._payloads.append(payload_item)
-        results, retrieval_mode = hybrid_search(index, retrieval_query, top_k=top_k, clearance=clearance)
+        results, retrieval_mode = hybrid_search(index, retrieval_query, top_k=top_k, clearance=clearance, departments=departments)
 
     answer_text = ""
     answer_generation_status = "no_context"

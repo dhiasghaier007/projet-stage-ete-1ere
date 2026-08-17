@@ -304,6 +304,16 @@ def main():
     report_file.write_text(report)
     print(f"✅ Report saved to {report_file}\n")
 
+    # Also save the structured results as JSON — dashboard.py reads this
+    # rather than re-parsing the text report.
+    json_report_path = Path(__file__).resolve().parents[2] / "data" / "outputs" / "classification_eval_report.json"
+    json_report_path.parent.mkdir(parents=True, exist_ok=True)
+    json_payload = dict(results_litellm)
+    json_payload["generated_at"] = datetime.now().isoformat()
+    json_payload["overall_accuracy_pct"] = round(100 * results_litellm["correct"] / results_litellm["total"], 1) if results_litellm["total"] else None
+    json_report_path.write_text(json.dumps(json_payload, indent=2), encoding="utf-8")
+    print(f"✅ JSON report saved to {json_report_path}\n")
+
 
 if __name__ == "__main__":
     main()

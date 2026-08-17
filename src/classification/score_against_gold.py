@@ -156,6 +156,29 @@ def main():
             tag = " (marked ambiguous in gold set)" if ambiguous else ""
             print(f"  {stem:35s} | {field:10s} | expected '{true_val}' got '{pred_val}'{tag}")
 
+    # Also save a structured JSON report, not just the printed text — this
+    # is what dashboard.py reads to show gold-set accuracy without having
+    # to re-parse console output.
+    from datetime import datetime, timezone
+
+    report = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "sample_stems": selected_stems,
+        "total_scored": total,
+        "skipped_unclassified": skipped_unclassified,
+        "per_field_accuracy": {
+            f: {"correct": field_correct[f], "total": field_total[f],
+                "accuracy_pct": round(100 * field_correct[f] / field_total[f], 1) if field_total[f] else None}
+            for f in FIELDS
+        },
+        "overall_accuracy_pct": round(100 * overall_correct / overall_total, 1) if overall_total else None,
+        "mistake_count": len(mistakes),
+    }
+    report_path = Path(__file__).resolve().parents[2] / "data" / "outputs" / "gold_score_report.json"
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
+    print(f"\n✅ JSON report saved to {report_path}")
+
 
 if __name__ == "__main__":
     main()

@@ -34,6 +34,51 @@ _UNKNOWN_SENSITIVITY_RANK = max(SENSITIVITY_LEVELS.values())
 
 DEFAULT_CLEARANCE = "Internal"
 
+# --- Department isolation ---------------------------------------------------
+# A second, independent access dimension from sensitivity. Sensitivity is
+# ordinal (Restricted clearance sees everything Internal clearance sees,
+# plus more) — department isolation is NOT ordinal, it's set membership:
+# being cleared for "Finance" says nothing about whether you should see
+# "Legal" content. A caller's department access is therefore a *list* of
+# department names they belong to, not a single rank.
+#
+# "General" (and empty/missing department, which Stage 2 classification
+# falls back to when it isn't confident) is deliberately treated as
+# visible to everyone regardless of department access — it's the label for
+# company-wide content (announcements, shared IT reports) that was never
+# assigned to a specific department in the first place, not a department
+# in its own right. This is different from the sensitivity module's
+# fail-closed policy for unrecognized labels — that asymmetry is
+# intentional and specific to this one label; see is_department_allowed.
+SHARED_DEPARTMENTS = {"General", "", None}
+
+# Sentinel meaning "no department restriction" — used as the default so
+# existing callers that don't pass `departments` keep today's unrestricted
+# behavior. Real department isolation is opt-in at the call site (qa_cli.py
+# sets a real department list per session), not forced onto every caller.
+ALL_DEPARTMENTS = "All"
+
+
+def is_department_allowed(chunk_department: Any, user_departments: Any) -> bool:
+    """True if a chunk tagged `chunk_department` may be shown to someone
+    whose department access is `user_departments` (a list of department
+    names, or the ALL_DEPARTMENTS sentinel for unrestricted access)."""
+    if user_departments == ALL_DEPARTMENTS:
+        return True
+    if chunk_department in SHARED_DEPARTMENTS:
+        return True
+    return chunk_department in (user_departments or [])
+
+
+def filter_chunks_by_department(chunks: List[Dict[str, Any]], user_departments: Any) -> List[Dict[str, Any]]:
+    """Filter a list of retrieval-result dicts (each with a "metadata" key
+    containing "department") down to what `user_departments` may see. Same
+    role as filter_chunks_by_clearance, for the department dimension."""
+    return [
+        chunk for chunk in chunks
+        if is_department_allowed(chunk.get("metadata", {}).get("department"), user_departments)
+    ]
+
 
 def clearance_rank(clearance: str) -> int:
     """Rank for a clearance level. Unrecognized clearance names are treated
