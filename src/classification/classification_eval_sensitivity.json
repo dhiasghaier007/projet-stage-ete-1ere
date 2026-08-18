@@ -1,0 +1,410 @@
+{
+  "field_correct": {
+    "department": 17,
+    "language": 20,
+    "sensitivity": 19,
+    "doc_type": 9
+  },
+  "field_total": {
+    "department": 20,
+    "doc_type": 20,
+    "language": 20,
+    "sensitivity": 20
+  },
+  "mismatches": {
+    "doc_type": [
+      [
+        "sens_01_hr_public_wellness.txt",
+        "Announcement",
+        "Document"
+      ],
+      [
+        "sens_02_hr_internal_onboarding.txt",
+        "Memo",
+        "Document"
+      ],
+      [
+        "sens_05_finance_public_earnings.txt",
+        "Press Release",
+        "Report"
+      ],
+      [
+        "sens_06_finance_internal_budget.txt",
+        "Memo",
+        "Email"
+      ],
+      [
+        "sens_09_legal_public_compliance.txt",
+        "Statement",
+        "Document"
+      ],
+      [
+        "sens_10_legal_internal_review_process.txt",
+        "Memo",
+        "Document"
+      ],
+      [
+        "sens_13_it_public_feature_launch.txt",
+        "Blog Post",
+        "Document"
+      ],
+      [
+        "sens_14_it_internal_helpdesk_procedure.txt",
+        "Procedure",
+        "Document"
+      ],
+      [
+        "sens_17_general_public_allhands_recap.txt",
+        "Announcement",
+        "Document"
+      ],
+      [
+        "sens_18_general_internal_office_move.txt",
+        "Memo",
+        "Document"
+      ],
+      [
+        "sens_19_general_confidential_partnership.txt",
+        "Memo",
+        "Document"
+      ]
+    ],
+    "department": [
+      [
+        "sens_08_finance_restricted_loan.txt",
+        "Finance",
+        "Legal"
+      ],
+      [
+        "sens_16_it_restricted_dpa.txt",
+        "IT",
+        "Legal"
+      ],
+      [
+        "sens_20_general_restricted_vendor_msa.txt",
+        "General",
+        "Legal"
+      ]
+    ],
+    "sensitivity": [
+      [
+        "sens_11_legal_confidential_litigation.txt",
+        "Confidential",
+        "Restricted"
+      ]
+    ]
+  },
+  "per_doc_results": [
+    {
+      "filename": "sens_01_hr_public_wellness.txt",
+      "expected": {
+        "department": "HR",
+        "doc_type": "Announcement",
+        "language": "EN",
+        "sensitivity": "Public"
+      },
+      "actual": {
+        "department": "HR",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "sens_02_hr_internal_onboarding.txt",
+      "expected": {
+        "department": "HR",
+        "doc_type": "Memo",
+        "language": "EN",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "HR",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Internal"
+      }
+    },
+    {
+      "filename": "sens_03_hr_confidential_salary.txt",
+      "expected": {
+        "department": "HR",
+        "doc_type": "Report",
+        "language": "EN",
+        "sensitivity": "Confidential"
+      },
+      "actual": {
+        "department": "HR",
+        "doc_type": "Report",
+        "language": "EN",
+        "sensitivity": "Confidential"
+      }
+    },
+    {
+      "filename": "sens_04_hr_restricted_settlement.txt",
+      "expected": {
+        "department": "HR",
+        "doc_type": "Contract",
+        "language": "EN",
+        "sensitivity": "Restricted"
+      },
+      "actual": {
+        "department": "HR",
+        "doc_type": "Contract",
+        "language": "EN",
+        "sensitivity": "Restricted"
+      }
+    },
+    {
+      "filename": "sens_05_finance_public_earnings.txt",
+      "expected": {
+        "department": "Finance",
+        "doc_type": "Press Release",
+        "language": "EN",
+        "sensitivity": "Public"
+      },
+      "actual": {
+        "department": "Finance",
+        "doc_type": "Report",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "sens_06_finance_internal_budget.txt",
+      "expected": {
+        "department": "Finance",
+        "doc_type": "Memo",
+        "language": "EN",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "Finance",
+        "doc_type": "Email",
+        "language": "EN",
+        "sensitivity": "Internal"
+      }
+    },
+    {
+      "filename": "sens_07_finance_confidential_forecast.txt",
+      "expected": {
+        "department": "Finance",
+        "doc_type": "Report",
+        "language": "EN",
+        "sensitivity": "Confidential"
+      },
+      "actual": {
+        "department": "Finance",
+        "doc_type": "Report",
+        "language": "EN",
+        "sensitivity": "Confidential"
+      }
+    },
+    {
+      "filename": "sens_08_finance_restricted_loan.txt",
+      "expected": {
+        "department": "Finance",
+        "doc_type": "Contract",
+        "language": "EN",
+        "sensitivity": "Restricted"
+      },
+      "actual": {
+        "department": "Legal",
+        "doc_type": "Contract",
+        "language": "EN",
+        "sensitivity": "Restricted"
+      }
+    },
+    {
+      "filename": "sens_09_legal_public_compliance.txt",
+      "expected": {
+        "department": "Legal",
+        "doc_type": "Statement",
+        "language": "EN",
+        "sensitivity": "Public"
+      },
+      "actual": {
+        "department": "Legal",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "sens_10_legal_internal_review_process.txt",
+      "expected": {
+        "department": "Legal",
+        "doc_type": "Memo",
+        "language": "EN",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "Legal",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Internal"
+      }
+    },
+    {
+      "filename": "sens_11_legal_confidential_litigation.txt",
+      "expected": {
+        "department": "Legal",
+        "doc_type": "Report",
+        "language": "EN",
+        "sensitivity": "Confidential"
+      },
+      "actual": {
+        "department": "Legal",
+        "doc_type": "Report",
+        "language": "EN",
+        "sensitivity": "Restricted"
+      }
+    },
+    {
+      "filename": "sens_12_legal_restricted_nda.txt",
+      "expected": {
+        "department": "Legal",
+        "doc_type": "Contract",
+        "language": "EN",
+        "sensitivity": "Restricted"
+      },
+      "actual": {
+        "department": "Legal",
+        "doc_type": "Contract",
+        "language": "EN",
+        "sensitivity": "Restricted"
+      }
+    },
+    {
+      "filename": "sens_13_it_public_feature_launch.txt",
+      "expected": {
+        "department": "IT",
+        "doc_type": "Blog Post",
+        "language": "EN",
+        "sensitivity": "Public"
+      },
+      "actual": {
+        "department": "IT",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "sens_14_it_internal_helpdesk_procedure.txt",
+      "expected": {
+        "department": "IT",
+        "doc_type": "Procedure",
+        "language": "EN",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "IT",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Internal"
+      }
+    },
+    {
+      "filename": "sens_15_it_confidential_security_audit.txt",
+      "expected": {
+        "department": "IT",
+        "doc_type": "Report",
+        "language": "EN",
+        "sensitivity": "Confidential"
+      },
+      "actual": {
+        "department": "IT",
+        "doc_type": "Report",
+        "language": "EN",
+        "sensitivity": "Confidential"
+      }
+    },
+    {
+      "filename": "sens_16_it_restricted_dpa.txt",
+      "expected": {
+        "department": "IT",
+        "doc_type": "Contract",
+        "language": "EN",
+        "sensitivity": "Restricted"
+      },
+      "actual": {
+        "department": "Legal",
+        "doc_type": "Contract",
+        "language": "EN",
+        "sensitivity": "Restricted"
+      }
+    },
+    {
+      "filename": "sens_17_general_public_allhands_recap.txt",
+      "expected": {
+        "department": "General",
+        "doc_type": "Announcement",
+        "language": "EN",
+        "sensitivity": "Public"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "sens_18_general_internal_office_move.txt",
+      "expected": {
+        "department": "General",
+        "doc_type": "Memo",
+        "language": "EN",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Internal"
+      }
+    },
+    {
+      "filename": "sens_19_general_confidential_partnership.txt",
+      "expected": {
+        "department": "General",
+        "doc_type": "Memo",
+        "language": "EN",
+        "sensitivity": "Confidential"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Confidential"
+      }
+    },
+    {
+      "filename": "sens_20_general_restricted_vendor_msa.txt",
+      "expected": {
+        "department": "General",
+        "doc_type": "Contract",
+        "language": "EN",
+        "sensitivity": "Restricted"
+      },
+      "actual": {
+        "department": "Legal",
+        "doc_type": "Contract",
+        "language": "EN",
+        "sensitivity": "Restricted"
+      }
+    }
+  ],
+  "failed": 0,
+  "total_docs": 20,
+  "ground_truth_file": "../../sensitivity_corpus/metadata.jsonl",
+  "processed_dir": "../../data/processed_sens",
+  "generated_at": "2026-08-17T23:03:05.953262+00:00",
+  "overall_accuracy_pct": {
+    "department": 85.0,
+    "doc_type": 45.0,
+    "language": 100.0,
+    "sensitivity": 95.0
+  }
+}

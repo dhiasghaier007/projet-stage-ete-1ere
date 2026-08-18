@@ -17,5 +17,32 @@ services:
       timeout: 5s
       retries: 5
 
+  pipeline:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rag_pipeline
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      # Overrides whatever PGVECTOR_DSN is in .env with the in-network
+      # hostname, since "localhost" from .env means the container itself
+      # when running here, not the postgres service.
+      PGVECTOR_DSN: postgresql://${POSTGRES_USER:-rag_user}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-rag_db}
+    volumes:
+      - ./data:/app/data
+    # No `command:` here on purpose — this service is meant to be run as a
+    # one-off job, not started automatically by `docker compose up`:
+    #   docker compose run --rm pipeline all
+    #   docker compose run --rm pipeline chunk
+    #   docker compose run --rm pipeline qa --question "..." --interactive
+    # `docker compose up` will still build/create it but it exits immediately
+    # (CMD defaults to --help) since there's no long-running process to keep
+    # a "service" container alive for — see docker-entrypoint.sh.
+
 volumes:
   pgdata:
+

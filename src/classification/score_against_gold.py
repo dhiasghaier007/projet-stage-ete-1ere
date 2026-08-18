@@ -173,6 +173,10 @@ def main():
         },
         "overall_accuracy_pct": round(100 * overall_correct / overall_total, 1) if overall_total else None,
         "mistake_count": len(mistakes),
+        "mistakes": [
+            {"document": stem, "field": field, "expected": true_val, "got": pred_val, "ambiguous": ambiguous}
+            for stem, field, true_val, pred_val, ambiguous in mistakes
+        ],
     }
     report_path = Path(__file__).resolve().parents[2] / "data" / "outputs" / "gold_score_report.json"
     report_path.parent.mkdir(parents=True, exist_ok=True)

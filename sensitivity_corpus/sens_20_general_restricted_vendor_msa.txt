@@ -1,0 +1,20 @@
+MASTER SERVICES AGREEMENT
+
+This Master Services Agreement ("Agreement") is entered into between
+Meridian Holdings Inc. ("Client") and Vantage Consulting Group
+("Provider"), governing the terms under which Provider will deliver
+consulting services to Client.
+
+1. SERVICES. Provider shall perform services as described in one or more
+   Statements of Work executed under this Agreement.
+2. FEES. Client shall pay Provider according to the fee schedule set
+   forth in each applicable Statement of Work, net 30 days from invoice.
+3. CONFIDENTIALITY. Each party shall maintain the confidentiality of the
+   other's proprietary information disclosed in connection with this
+   Agreement.
+4. TERM AND TERMINATION. This Agreement shall remain in effect for two
+   (2) years, renewable by mutual written agreement, and may be
+   terminated by either party with 60 days' written notice.
+
+Executed by authorized representatives of both parties as of the date
+below.

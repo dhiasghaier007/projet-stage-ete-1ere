@@ -1,0 +1,24 @@
+{
+  "source_path": "data/samples/multilingual/test_multilingual_samples/doc_001_hr_policy_english.txt",
+  "file_hash": "7fa10cc3ee67d22d1ba315bb9716eb13a94b0650c5e711020eb31d66cd659410",
+  "ingested_at": "2026-08-18T08:21:22.610239+00:00",
+  "origin_filename": "doc_001_hr_policy_english.txt",
+  "title": "doc_001_hr_policy_english",
+  "classification": {
+    "department": "HR",
+    "doc_type": "Policy",
+    "language": "EN",
+    "sensitivity": "Internal",
+    "confidence": 1.0,
+    "classifier": "litellm",
+    "llm_model": "gemini/gemini-3.5-flash-lite",
+    "error": "",
+    "access_denied": false
+  },
+  "validation": {
+    "passed": true,
+    "needs_review": false,
+    "violations": []
+  },
+  "classified_at": "2026-08-18T08:21:42.738361+00:00"
+}

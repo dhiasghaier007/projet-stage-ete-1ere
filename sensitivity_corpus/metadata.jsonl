@@ -1,0 +1,20 @@
+{"filename": "sens_01_hr_public_wellness.txt", "true_department": "HR", "true_doc_type": "Announcement", "true_language": "EN", "true_sensitivity": "Public"}
+{"filename": "sens_02_hr_internal_onboarding.txt", "true_department": "HR", "true_doc_type": "Memo", "true_language": "EN", "true_sensitivity": "Internal"}
+{"filename": "sens_03_hr_confidential_salary.txt", "true_department": "HR", "true_doc_type": "Report", "true_language": "EN", "true_sensitivity": "Confidential"}
+{"filename": "sens_04_hr_restricted_settlement.txt", "true_department": "HR", "true_doc_type": "Contract", "true_language": "EN", "true_sensitivity": "Restricted"}
+{"filename": "sens_05_finance_public_earnings.txt", "true_department": "Finance", "true_doc_type": "Press Release", "true_language": "EN", "true_sensitivity": "Public"}
+{"filename": "sens_06_finance_internal_budget.txt", "true_department": "Finance", "true_doc_type": "Memo", "true_language": "EN", "true_sensitivity": "Internal"}
+{"filename": "sens_07_finance_confidential_forecast.txt", "true_department": "Finance", "true_doc_type": "Report", "true_language": "EN", "true_sensitivity": "Confidential"}
+{"filename": "sens_08_finance_restricted_loan.txt", "true_department": "Finance", "true_doc_type": "Contract", "true_language": "EN", "true_sensitivity": "Restricted"}
+{"filename": "sens_09_legal_public_compliance.txt", "true_department": "Legal", "true_doc_type": "Statement", "true_language": "EN", "true_sensitivity": "Public"}
+{"filename": "sens_10_legal_internal_review_process.txt", "true_department": "Legal", "true_doc_type": "Memo", "true_language": "EN", "true_sensitivity": "Internal"}
+{"filename": "sens_11_legal_confidential_litigation.txt", "true_department": "Legal", "true_doc_type": "Report", "true_language": "EN", "true_sensitivity": "Confidential"}
+{"filename": "sens_12_legal_restricted_nda.txt", "true_department": "Legal", "true_doc_type": "Contract", "true_language": "EN", "true_sensitivity": "Restricted"}
+{"filename": "sens_13_it_public_feature_launch.txt", "true_department": "IT", "true_doc_type": "Blog Post", "true_language": "EN", "true_sensitivity": "Public"}
+{"filename": "sens_14_it_internal_helpdesk_procedure.txt", "true_department": "IT", "true_doc_type": "Procedure", "true_language": "EN", "true_sensitivity": "Internal"}
+{"filename": "sens_15_it_confidential_security_audit.txt", "true_department": "IT", "true_doc_type": "Report", "true_language": "EN", "true_sensitivity": "Confidential"}
+{"filename": "sens_16_it_restricted_dpa.txt", "true_department": "IT", "true_doc_type": "Contract", "true_language": "EN", "true_sensitivity": "Restricted"}
+{"filename": "sens_17_general_public_allhands_recap.txt", "true_department": "General", "true_doc_type": "Announcement", "true_language": "EN", "true_sensitivity": "Public"}
+{"filename": "sens_18_general_internal_office_move.txt", "true_department": "General", "true_doc_type": "Memo", "true_language": "EN", "true_sensitivity": "Internal"}
+{"filename": "sens_19_general_confidential_partnership.txt", "true_department": "General", "true_doc_type": "Memo", "true_language": "EN", "true_sensitivity": "Confidential"}
+{"filename": "sens_20_general_restricted_vendor_msa.txt", "true_department": "General", "true_doc_type": "Contract", "true_language": "EN", "true_sensitivity": "Restricted"}

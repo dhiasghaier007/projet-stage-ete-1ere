@@ -17,6 +17,7 @@ classification "explicit failure state" pattern) — and for an access
 control filter specifically, failing open is a security bug, not a
 convenience.
 """
+import re
 from typing import Any, Dict, List
 
 # Ordinal ranking, lowest (most open) to highest (most restricted).
@@ -57,6 +58,73 @@ SHARED_DEPARTMENTS = {"General", "", None}
 # behavior. Real department isolation is opt-in at the call site (qa_cli.py
 # sets a real department list per session), not forced onto every caller.
 ALL_DEPARTMENTS = "All"
+
+# The company's real departments — the single source of truth for what a
+# valid department name is. classification's rule_validator.py imports this
+# directly rather than keeping its own copy (that used to be two lists that
+# could silently drift apart). "General" is included here too since it's a
+# legitimate value classification can assign (see SHARED_DEPARTMENTS above)
+# even though it isn't a real organizational department.
+CANONICAL_DEPARTMENTS = {"HR", "Finance", "Legal", "IT", "General"}
+
+# --- Department-scoped storage (pgvector table naming) ----------------------
+# "Two Department Knowledge Bases" (the spec deliverable) means real,
+# separate storage per department, not one shared table with a WHERE filter.
+# Department names now flow directly into SQL table identifiers — table/
+# index names can't be parameterized with query placeholders the way values
+# can, so this is the one place in the codebase that has to build a table
+# name via string interpolation. That makes it a deliberate, narrow
+# SQL-injection surface: department_table_name() is the ONLY sanctioned way
+# to turn a department string into a table name, and it fails loudly on
+# anything that isn't an already-known-good canonical department, rather
+# than trying to sanitize an arbitrary string. Every caller that needs a
+# per-department table name (indexing, retrieval) must go through this
+# function instead of interpolating `department` directly.
+_TABLE_NAME_PREFIX = "rag_chunks"
+_SAFE_TABLE_SUFFIX_RE = re.compile(r"^[a-z0-9_]+$")
+
+
+def department_table_name(department: str) -> str:
+    """Map a department name to its pgvector table name, e.g. "HR" ->
+    "rag_chunks_hr". Raises ValueError for anything outside
+    CANONICAL_DEPARTMENTS — this is intentionally strict (not a general
+    string-sanitizer) since the only legitimate inputs are the department
+    names classification is allowed to produce in the first place. Silently
+    slugifying an arbitrary string would let a typo'd or malicious
+    department name quietly create a new, unaudited table."""
+    if department not in CANONICAL_DEPARTMENTS:
+        raise ValueError(
+            f"Refusing to build a table name for department '{department}': "
+            f"not one of the recognized departments ({', '.join(sorted(CANONICAL_DEPARTMENTS))}). "
+            f"This check exists because department names are interpolated directly into SQL "
+            f"table identifiers — an unrecognized value must never reach that point."
+        )
+    suffix = department.lower()
+    table_name = f"{_TABLE_NAME_PREFIX}_{suffix}"
+    # Defense in depth: even though CANONICAL_DEPARTMENTS is a fixed,
+    # hardcoded set today, assert the shape of what we're about to return
+    # rather than trusting the membership check alone forever.
+    if not _SAFE_TABLE_SUFFIX_RE.match(suffix):
+        raise ValueError(f"Department '{department}' produced an unsafe table suffix '{suffix}'.")
+    return table_name
+
+
+def department_tables_for(departments: Any) -> List[str]:
+    """The list of pgvector table names a caller's department access maps
+    to, for use in multi-table retrieval. ALL_DEPARTMENTS returns every
+    canonical department's table (real department-isolation storage, not a
+    shared table) — so an unrestricted caller still queries each
+    department-scoped collection and the results are fused across them,
+    rather than reading from one big table. A caller with a specific
+    department list gets exactly their own department(s) plus "General"
+    (mirroring is_department_allowed's "General is always visible" rule) —
+    deduplicated and order-stable so callers get consistent query plans."""
+    if departments == ALL_DEPARTMENTS:
+        selected = sorted(CANONICAL_DEPARTMENTS)
+    else:
+        selected = list(dict.fromkeys([*(departments or []), "General"]))
+        selected = [d for d in selected if d in CANONICAL_DEPARTMENTS]
+    return [department_table_name(d) for d in selected]
 
 
 def is_department_allowed(chunk_department: Any, user_departments: Any) -> bool:

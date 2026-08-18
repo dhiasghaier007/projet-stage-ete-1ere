@@ -1,0 +1,52 @@
+{
+  "7fa10cc3ee67d22d1ba315bb9716eb13a94b0650c5e711020eb31d66cd659410": {
+    "source_path": "data/samples/multilingual/test_multilingual_samples/doc_001_hr_policy_english.txt",
+    "file_hash": "7fa10cc3ee67d22d1ba315bb9716eb13a94b0650c5e711020eb31d66cd659410",
+    "mtime": 1786012651.3100595,
+    "size_bytes": 1446,
+    "status": "new",
+    "output_path": "data/samples/multilingual/processed_gold/doc_001_hr_policy_english.md",
+    "error": null,
+    "processed_at": "2026-08-18T08:21:22.610239+00:00"
+  },
+  "ea904bef2f751f022711eeb5e4270cdb3aed1c0c5c5b9a51811b392a79685f21": {
+    "source_path": "data/samples/multilingual/test_multilingual_samples/doc_002_finance_invoice_french.txt",
+    "file_hash": "ea904bef2f751f022711eeb5e4270cdb3aed1c0c5c5b9a51811b392a79685f21",
+    "mtime": 1786012651.3100595,
+    "size_bytes": 1402,
+    "status": "new",
+    "output_path": "data/samples/multilingual/processed_gold/doc_002_finance_invoice_french.md",
+    "error": null,
+    "processed_at": "2026-08-18T08:21:22.611284+00:00"
+  },
+  "c02e688749d856f484ec3a69ac53455d75e281ab7b34659996709a51c452266e": {
+    "source_path": "data/samples/multilingual/test_multilingual_samples/doc_003_legal_contract_arabic.txt",
+    "file_hash": "c02e688749d856f484ec3a69ac53455d75e281ab7b34659996709a51c452266e",
+    "mtime": 1786012651.3100595,
+    "size_bytes": 1954,
+    "status": "new",
+    "output_path": "data/samples/multilingual/processed_gold/doc_003_legal_contract_arabic.md",
+    "error": null,
+    "processed_at": "2026-08-18T08:21:22.611616+00:00"
+  },
+  "8d534120226ed3434bc030ef594974324edbd4cbff5359ae927a559c6240d9f1": {
+    "source_path": "data/samples/multilingual/test_multilingual_samples/doc_004_it_report_english.txt",
+    "file_hash": "8d534120226ed3434bc030ef594974324edbd4cbff5359ae927a559c6240d9f1",
+    "mtime": 1786012651.3100595,
+    "size_bytes": 2097,
+    "status": "new",
+    "output_path": "data/samples/multilingual/processed_gold/doc_004_it_report_english.md",
+    "error": null,
+    "processed_at": "2026-08-18T08:21:22.612321+00:00"
+  },
+  "d264fb9821c7a1706902a2dc90c62f3c8a1b28f04bf02b299439fd31c29bf472": {
+    "source_path": "data/samples/multilingual/test_multilingual_samples/doc_005_general_email_french_arabic.txt",
+    "file_hash": "d264fb9821c7a1706902a2dc90c62f3c8a1b28f04bf02b299439fd31c29bf472",
+    "mtime": 1786012651.3100595,
+    "size_bytes": 1519,
+    "status": "new",
+    "output_path": "data/samples/multilingual/processed_gold/doc_005_general_email_french_arabic.md",
+    "error": null,
+    "processed_at": "2026-08-18T08:21:22.612635+00:00"
+  }
+}

@@ -1,0 +1,1169 @@
+{
+  "field_correct": {
+    "department": 32,
+    "language": 45,
+    "sensitivity": 11
+  },
+  "field_total": {
+    "department": 45,
+    "doc_type": 45,
+    "language": 45,
+    "sensitivity": 45
+  },
+  "mismatches": {
+    "doc_type": [
+      [
+        "doc_001_hr_human_resource_management_en.txt",
+        "Article",
+        "Document"
+      ],
+      [
+        "doc_002_hr_employment_contract_en.docx",
+        "Report",
+        "Document"
+      ],
+      [
+        "doc_003_hr_topics_en.csv",
+        "DataSheet",
+        "Data Table"
+      ],
+      [
+        "doc_004_hr_gestion_des_ressources_humaines_fr.pdf",
+        "Report",
+        "Document"
+      ],
+      [
+        "doc_005_hr_contrat_de_travail_fr.html",
+        "Reference",
+        "Document"
+      ],
+      [
+        "doc_006_hr_topics_fr.csv",
+        "DataSheet",
+        "Data Table"
+      ],
+      [
+        "doc_007_hr_إدارة_الموارد_البشرية_ar.txt",
+        "Article",
+        "Document"
+      ],
+      [
+        "doc_008_hr_عقد_عمل_ar.docx",
+        "Report",
+        "Document"
+      ],
+      [
+        "doc_009_hr_topics_ar.csv",
+        "DataSheet",
+        "Data Table"
+      ],
+      [
+        "doc_010_finance_balance_sheet_en.txt",
+        "Article",
+        "Document"
+      ],
+      [
+        "doc_011_finance_corporate_finance_en.docx",
+        "Report",
+        "Document"
+      ],
+      [
+        "doc_012_finance_topics_en.csv",
+        "DataSheet",
+        "Data Table"
+      ],
+      [
+        "doc_013_finance_état_de_la_situation_financière_fr.pdf",
+        "Report",
+        "Document"
+      ],
+      [
+        "doc_014_finance_finance_dentreprise_fr.html",
+        "Reference",
+        "Document"
+      ],
+      [
+        "doc_015_finance_topics_fr.csv",
+        "DataSheet",
+        "Data Table"
+      ],
+      [
+        "doc_016_finance_ميزانية_عمومية_ar.html",
+        "Reference",
+        "Document"
+      ],
+      [
+        "doc_017_finance_مؤسسة_التمويل_اليابانية_ar.txt",
+        "Article",
+        "Document"
+      ],
+      [
+        "doc_018_finance_topics_ar.csv",
+        "DataSheet",
+        "Data Table"
+      ],
+      [
+        "doc_019_legal_contract_en.txt",
+        "Article",
+        "Document"
+      ],
+      [
+        "doc_020_legal_intellectual_property_en.docx",
+        "Report",
+        "Document"
+      ],
+      [
+        "doc_021_legal_topics_en.csv",
+        "DataSheet",
+        "Data Table"
+      ],
+      [
+        "doc_022_legal_contrat_fr.pdf",
+        "Report",
+        "Document"
+      ],
+      [
+        "doc_023_legal_propriété_intellectuelle_fr.html",
+        "Reference",
+        "Document"
+      ],
+      [
+        "doc_024_legal_topics_fr.csv",
+        "DataSheet",
+        "Data Table"
+      ],
+      [
+        "doc_025_legal_عقد_توضيح_ar.docx",
+        "Report",
+        "Document"
+      ],
+      [
+        "doc_026_legal_ملكية_فكرية_ar.html",
+        "Reference",
+        "Document"
+      ],
+      [
+        "doc_027_legal_topics_ar.csv",
+        "DataSheet",
+        "Data Table"
+      ],
+      [
+        "doc_028_it_cloud_computing_en.txt",
+        "Article",
+        "Document"
+      ],
+      [
+        "doc_029_it_information_security_en.docx",
+        "Report",
+        "Document"
+      ],
+      [
+        "doc_030_it_topics_en.csv",
+        "DataSheet",
+        "Data Table"
+      ],
+      [
+        "doc_031_it_cloud_computing_fr.pdf",
+        "Report",
+        "Document"
+      ],
+      [
+        "doc_032_it_sécurité_de_linformation_fr.html",
+        "Reference",
+        "Document"
+      ],
+      [
+        "doc_033_it_topics_fr.csv",
+        "DataSheet",
+        "Data Table"
+      ],
+      [
+        "doc_034_it_حوسبة_سحابية_ar.txt",
+        "Article",
+        "Document"
+      ],
+      [
+        "doc_035_it_أمن_المعلومات_ar.docx",
+        "Report",
+        "Document"
+      ],
+      [
+        "doc_036_it_topics_ar.csv",
+        "DataSheet",
+        "Data Table"
+      ],
+      [
+        "doc_037_general_project_management_en.txt",
+        "Article",
+        "Document"
+      ],
+      [
+        "doc_038_general_organization_en.docx",
+        "Report",
+        "Document"
+      ],
+      [
+        "doc_039_general_topics_en.csv",
+        "DataSheet",
+        "Data Table"
+      ],
+      [
+        "doc_040_general_gestion_de_projet_fr.pdf",
+        "Report",
+        "Document"
+      ],
+      [
+        "doc_041_general_fonctionnement_et_organisation_de_lentreprise_fr.html",
+        "Reference",
+        "Document"
+      ],
+      [
+        "doc_042_general_topics_fr.csv",
+        "DataSheet",
+        "Data Table"
+      ],
+      [
+        "doc_043_general_إدارة_المشاريع_ar.html",
+        "Reference",
+        "Document"
+      ],
+      [
+        "doc_044_general_منظمة_ar.txt",
+        "Article",
+        "Document"
+      ],
+      [
+        "doc_045_general_topics_ar.csv",
+        "DataSheet",
+        "Data Table"
+      ]
+    ],
+    "sensitivity": [
+      [
+        "doc_001_hr_human_resource_management_en.txt",
+        "Confidential",
+        "Public"
+      ],
+      [
+        "doc_002_hr_employment_contract_en.docx",
+        "Confidential",
+        "Public"
+      ],
+      [
+        "doc_003_hr_topics_en.csv",
+        "Confidential",
+        "Public"
+      ],
+      [
+        "doc_004_hr_gestion_des_ressources_humaines_fr.pdf",
+        "Confidential",
+        "Public"
+      ],
+      [
+        "doc_005_hr_contrat_de_travail_fr.html",
+        "Confidential",
+        "Public"
+      ],
+      [
+        "doc_006_hr_topics_fr.csv",
+        "Confidential",
+        "Public"
+      ],
+      [
+        "doc_007_hr_إدارة_الموارد_البشرية_ar.txt",
+        "Confidential",
+        "Public"
+      ],
+      [
+        "doc_008_hr_عقد_عمل_ar.docx",
+        "Confidential",
+        "Public"
+      ],
+      [
+        "doc_009_hr_topics_ar.csv",
+        "Confidential",
+        "Public"
+      ],
+      [
+        "doc_010_finance_balance_sheet_en.txt",
+        "Internal",
+        "Public"
+      ],
+      [
+        "doc_011_finance_corporate_finance_en.docx",
+        "Internal",
+        "Public"
+      ],
+      [
+        "doc_012_finance_topics_en.csv",
+        "Internal",
+        "Public"
+      ],
+      [
+        "doc_013_finance_état_de_la_situation_financière_fr.pdf",
+        "Internal",
+        "Public"
+      ],
+      [
+        "doc_014_finance_finance_dentreprise_fr.html",
+        "Internal",
+        "Public"
+      ],
+      [
+        "doc_015_finance_topics_fr.csv",
+        "Internal",
+        "Public"
+      ],
+      [
+        "doc_017_finance_مؤسسة_التمويل_اليابانية_ar.txt",
+        "Internal",
+        "Public"
+      ],
+      [
+        "doc_018_finance_topics_ar.csv",
+        "Internal",
+        "Public"
+      ],
+      [
+        "doc_019_legal_contract_en.txt",
+        "Restricted",
+        "Public"
+      ],
+      [
+        "doc_020_legal_intellectual_property_en.docx",
+        "Restricted",
+        "Public"
+      ],
+      [
+        "doc_021_legal_topics_en.csv",
+        "Restricted",
+        "Public"
+      ],
+      [
+        "doc_022_legal_contrat_fr.pdf",
+        "Restricted",
+        "Public"
+      ],
+      [
+        "doc_023_legal_propriété_intellectuelle_fr.html",
+        "Restricted",
+        "Internal"
+      ],
+      [
+        "doc_024_legal_topics_fr.csv",
+        "Restricted",
+        "Public"
+      ],
+      [
+        "doc_025_legal_عقد_توضيح_ar.docx",
+        "Restricted",
+        "Public"
+      ],
+      [
+        "doc_026_legal_ملكية_فكرية_ar.html",
+        "Restricted",
+        "Public"
+      ],
+      [
+        "doc_027_legal_topics_ar.csv",
+        "Restricted",
+        "Public"
+      ],
+      [
+        "doc_028_it_cloud_computing_en.txt",
+        "Internal",
+        "Public"
+      ],
+      [
+        "doc_029_it_information_security_en.docx",
+        "Internal",
+        "Public"
+      ],
+      [
+        "doc_030_it_topics_en.csv",
+        "Internal",
+        "Public"
+      ],
+      [
+        "doc_031_it_cloud_computing_fr.pdf",
+        "Internal",
+        "Public"
+      ],
+      [
+        "doc_033_it_topics_fr.csv",
+        "Internal",
+        "Public"
+      ],
+      [
+        "doc_034_it_حوسبة_سحابية_ar.txt",
+        "Internal",
+        "Public"
+      ],
+      [
+        "doc_035_it_أمن_المعلومات_ar.docx",
+        "Internal",
+        "Public"
+      ],
+      [
+        "doc_036_it_topics_ar.csv",
+        "Internal",
+        "Public"
+      ]
+    ],
+    "department": [
+      [
+        "doc_003_hr_topics_en.csv",
+        "HR",
+        "General"
+      ],
+      [
+        "doc_006_hr_topics_fr.csv",
+        "HR",
+        "General"
+      ],
+      [
+        "doc_009_hr_topics_ar.csv",
+        "HR",
+        "General"
+      ],
+      [
+        "doc_012_finance_topics_en.csv",
+        "Finance",
+        "General"
+      ],
+      [
+        "doc_015_finance_topics_fr.csv",
+        "Finance",
+        "General"
+      ],
+      [
+        "doc_018_finance_topics_ar.csv",
+        "Finance",
+        "General"
+      ],
+      [
+        "doc_021_legal_topics_en.csv",
+        "Legal",
+        "General"
+      ],
+      [
+        "doc_024_legal_topics_fr.csv",
+        "Legal",
+        "General"
+      ],
+      [
+        "doc_025_legal_عقد_توضيح_ar.docx",
+        "Legal",
+        "General"
+      ],
+      [
+        "doc_027_legal_topics_ar.csv",
+        "Legal",
+        "General"
+      ],
+      [
+        "doc_030_it_topics_en.csv",
+        "IT",
+        "General"
+      ],
+      [
+        "doc_033_it_topics_fr.csv",
+        "IT",
+        "General"
+      ],
+      [
+        "doc_036_it_topics_ar.csv",
+        "IT",
+        "General"
+      ]
+    ]
+  },
+  "per_doc_results": [
+    {
+      "filename": "doc_001_hr_human_resource_management_en.txt",
+      "expected": {
+        "department": "HR",
+        "doc_type": "Article",
+        "language": "EN",
+        "sensitivity": "Confidential"
+      },
+      "actual": {
+        "department": "HR",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_002_hr_employment_contract_en.docx",
+      "expected": {
+        "department": "HR",
+        "doc_type": "Report",
+        "language": "EN",
+        "sensitivity": "Confidential"
+      },
+      "actual": {
+        "department": "HR",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_003_hr_topics_en.csv",
+      "expected": {
+        "department": "HR",
+        "doc_type": "DataSheet",
+        "language": "EN",
+        "sensitivity": "Confidential"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Data Table",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_004_hr_gestion_des_ressources_humaines_fr.pdf",
+      "expected": {
+        "department": "HR",
+        "doc_type": "Report",
+        "language": "FR",
+        "sensitivity": "Confidential"
+      },
+      "actual": {
+        "department": "HR",
+        "doc_type": "Document",
+        "language": "FR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_005_hr_contrat_de_travail_fr.html",
+      "expected": {
+        "department": "HR",
+        "doc_type": "Reference",
+        "language": "FR",
+        "sensitivity": "Confidential"
+      },
+      "actual": {
+        "department": "HR",
+        "doc_type": "Document",
+        "language": "FR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_006_hr_topics_fr.csv",
+      "expected": {
+        "department": "HR",
+        "doc_type": "DataSheet",
+        "language": "FR",
+        "sensitivity": "Confidential"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Data Table",
+        "language": "FR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_007_hr_إدارة_الموارد_البشرية_ar.txt",
+      "expected": {
+        "department": "HR",
+        "doc_type": "Article",
+        "language": "AR",
+        "sensitivity": "Confidential"
+      },
+      "actual": {
+        "department": "HR",
+        "doc_type": "Document",
+        "language": "AR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_008_hr_عقد_عمل_ar.docx",
+      "expected": {
+        "department": "HR",
+        "doc_type": "Report",
+        "language": "AR",
+        "sensitivity": "Confidential"
+      },
+      "actual": {
+        "department": "HR",
+        "doc_type": "Document",
+        "language": "AR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_009_hr_topics_ar.csv",
+      "expected": {
+        "department": "HR",
+        "doc_type": "DataSheet",
+        "language": "AR",
+        "sensitivity": "Confidential"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Data Table",
+        "language": "AR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_010_finance_balance_sheet_en.txt",
+      "expected": {
+        "department": "Finance",
+        "doc_type": "Article",
+        "language": "EN",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "Finance",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_011_finance_corporate_finance_en.docx",
+      "expected": {
+        "department": "Finance",
+        "doc_type": "Report",
+        "language": "EN",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "Finance",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_012_finance_topics_en.csv",
+      "expected": {
+        "department": "Finance",
+        "doc_type": "DataSheet",
+        "language": "EN",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Data Table",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_013_finance_état_de_la_situation_financière_fr.pdf",
+      "expected": {
+        "department": "Finance",
+        "doc_type": "Report",
+        "language": "FR",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "Finance",
+        "doc_type": "Document",
+        "language": "FR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_014_finance_finance_dentreprise_fr.html",
+      "expected": {
+        "department": "Finance",
+        "doc_type": "Reference",
+        "language": "FR",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "Finance",
+        "doc_type": "Document",
+        "language": "FR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_015_finance_topics_fr.csv",
+      "expected": {
+        "department": "Finance",
+        "doc_type": "DataSheet",
+        "language": "FR",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Data Table",
+        "language": "FR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_016_finance_ميزانية_عمومية_ar.html",
+      "expected": {
+        "department": "Finance",
+        "doc_type": "Reference",
+        "language": "AR",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "Finance",
+        "doc_type": "Document",
+        "language": "AR",
+        "sensitivity": "Internal"
+      }
+    },
+    {
+      "filename": "doc_017_finance_مؤسسة_التمويل_اليابانية_ar.txt",
+      "expected": {
+        "department": "Finance",
+        "doc_type": "Article",
+        "language": "AR",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "Finance",
+        "doc_type": "Document",
+        "language": "AR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_018_finance_topics_ar.csv",
+      "expected": {
+        "department": "Finance",
+        "doc_type": "DataSheet",
+        "language": "AR",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Data Table",
+        "language": "AR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_019_legal_contract_en.txt",
+      "expected": {
+        "department": "Legal",
+        "doc_type": "Article",
+        "language": "EN",
+        "sensitivity": "Restricted"
+      },
+      "actual": {
+        "department": "Legal",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_020_legal_intellectual_property_en.docx",
+      "expected": {
+        "department": "Legal",
+        "doc_type": "Report",
+        "language": "EN",
+        "sensitivity": "Restricted"
+      },
+      "actual": {
+        "department": "Legal",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_021_legal_topics_en.csv",
+      "expected": {
+        "department": "Legal",
+        "doc_type": "DataSheet",
+        "language": "EN",
+        "sensitivity": "Restricted"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Data Table",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_022_legal_contrat_fr.pdf",
+      "expected": {
+        "department": "Legal",
+        "doc_type": "Report",
+        "language": "FR",
+        "sensitivity": "Restricted"
+      },
+      "actual": {
+        "department": "Legal",
+        "doc_type": "Document",
+        "language": "FR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_023_legal_propriété_intellectuelle_fr.html",
+      "expected": {
+        "department": "Legal",
+        "doc_type": "Reference",
+        "language": "FR",
+        "sensitivity": "Restricted"
+      },
+      "actual": {
+        "department": "Legal",
+        "doc_type": "Document",
+        "language": "FR",
+        "sensitivity": "Internal"
+      }
+    },
+    {
+      "filename": "doc_024_legal_topics_fr.csv",
+      "expected": {
+        "department": "Legal",
+        "doc_type": "DataSheet",
+        "language": "FR",
+        "sensitivity": "Restricted"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Data Table",
+        "language": "FR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_025_legal_عقد_توضيح_ar.docx",
+      "expected": {
+        "department": "Legal",
+        "doc_type": "Report",
+        "language": "AR",
+        "sensitivity": "Restricted"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Document",
+        "language": "AR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_026_legal_ملكية_فكرية_ar.html",
+      "expected": {
+        "department": "Legal",
+        "doc_type": "Reference",
+        "language": "AR",
+        "sensitivity": "Restricted"
+      },
+      "actual": {
+        "department": "Legal",
+        "doc_type": "Document",
+        "language": "AR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_027_legal_topics_ar.csv",
+      "expected": {
+        "department": "Legal",
+        "doc_type": "DataSheet",
+        "language": "AR",
+        "sensitivity": "Restricted"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Data Table",
+        "language": "AR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_028_it_cloud_computing_en.txt",
+      "expected": {
+        "department": "IT",
+        "doc_type": "Article",
+        "language": "EN",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "IT",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_029_it_information_security_en.docx",
+      "expected": {
+        "department": "IT",
+        "doc_type": "Report",
+        "language": "EN",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "IT",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_030_it_topics_en.csv",
+      "expected": {
+        "department": "IT",
+        "doc_type": "DataSheet",
+        "language": "EN",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Data Table",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_031_it_cloud_computing_fr.pdf",
+      "expected": {
+        "department": "IT",
+        "doc_type": "Report",
+        "language": "FR",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "IT",
+        "doc_type": "Document",
+        "language": "FR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_032_it_sécurité_de_linformation_fr.html",
+      "expected": {
+        "department": "IT",
+        "doc_type": "Reference",
+        "language": "FR",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "IT",
+        "doc_type": "Document",
+        "language": "FR",
+        "sensitivity": "Internal"
+      }
+    },
+    {
+      "filename": "doc_033_it_topics_fr.csv",
+      "expected": {
+        "department": "IT",
+        "doc_type": "DataSheet",
+        "language": "FR",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Data Table",
+        "language": "FR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_034_it_حوسبة_سحابية_ar.txt",
+      "expected": {
+        "department": "IT",
+        "doc_type": "Article",
+        "language": "AR",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "IT",
+        "doc_type": "Document",
+        "language": "AR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_035_it_أمن_المعلومات_ar.docx",
+      "expected": {
+        "department": "IT",
+        "doc_type": "Report",
+        "language": "AR",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "IT",
+        "doc_type": "Document",
+        "language": "AR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_036_it_topics_ar.csv",
+      "expected": {
+        "department": "IT",
+        "doc_type": "DataSheet",
+        "language": "AR",
+        "sensitivity": "Internal"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Data Table",
+        "language": "AR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_037_general_project_management_en.txt",
+      "expected": {
+        "department": "General",
+        "doc_type": "Article",
+        "language": "EN",
+        "sensitivity": "Public"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_038_general_organization_en.docx",
+      "expected": {
+        "department": "General",
+        "doc_type": "Report",
+        "language": "EN",
+        "sensitivity": "Public"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Document",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_039_general_topics_en.csv",
+      "expected": {
+        "department": "General",
+        "doc_type": "DataSheet",
+        "language": "EN",
+        "sensitivity": "Public"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Data Table",
+        "language": "EN",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_040_general_gestion_de_projet_fr.pdf",
+      "expected": {
+        "department": "General",
+        "doc_type": "Report",
+        "language": "FR",
+        "sensitivity": "Public"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Document",
+        "language": "FR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_041_general_fonctionnement_et_organisation_de_lentreprise_fr.html",
+      "expected": {
+        "department": "General",
+        "doc_type": "Reference",
+        "language": "FR",
+        "sensitivity": "Public"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Document",
+        "language": "FR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_042_general_topics_fr.csv",
+      "expected": {
+        "department": "General",
+        "doc_type": "DataSheet",
+        "language": "FR",
+        "sensitivity": "Public"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Data Table",
+        "language": "FR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_043_general_إدارة_المشاريع_ar.html",
+      "expected": {
+        "department": "General",
+        "doc_type": "Reference",
+        "language": "AR",
+        "sensitivity": "Public"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Document",
+        "language": "AR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_044_general_منظمة_ar.txt",
+      "expected": {
+        "department": "General",
+        "doc_type": "Article",
+        "language": "AR",
+        "sensitivity": "Public"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Document",
+        "language": "AR",
+        "sensitivity": "Public"
+      }
+    },
+    {
+      "filename": "doc_045_general_topics_ar.csv",
+      "expected": {
+        "department": "General",
+        "doc_type": "DataSheet",
+        "language": "AR",
+        "sensitivity": "Public"
+      },
+      "actual": {
+        "department": "General",
+        "doc_type": "Data Table",
+        "language": "AR",
+        "sensitivity": "Public"
+      }
+    }
+  ],
+  "failed": 0,
+  "total_docs": 45,
+  "ground_truth_file": "../../test_corpus_wiki/metadata.jsonl",
+  "processed_dir": "../../data/processed",
+  "generated_at": "2026-08-17T22:19:38.748112+00:00",
+  "overall_accuracy_pct": {
+    "department": 71.1,
+    "doc_type": 0.0,
+    "language": 100.0,
+    "sensitivity": 24.4
+  }
+}

@@ -1,0 +1,18 @@
+======================================================================
+CLASSIFICATION ACCURACY — CORPUS EVALUATION
+======================================================================
+Documents evaluated: 45
+Classifier failures (UNCLASSIFIED / llm_failed): 0
+
+Per-field accuracy:
+  department  : 45/45  (100.0%)
+  doc_type    : 45/45  (100.0%)
+  language    : 45/45  (100.0%)
+  sensitivity : 42/45  (93.3%)
+
+Mismatches — sensitivity:
+  doc_016_finance_ميزانية_عمومية_ar.html             expected='Public'             got='Internal'
+  doc_023_legal_propriété_intellectuelle_fr.html     expected='Public'             got='Internal'
+  doc_032_it_sécurité_de_linformation_fr.html        expected='Public'             got='Internal'
+
+======================================================================

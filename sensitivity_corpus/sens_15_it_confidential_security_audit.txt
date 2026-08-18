@@ -1,0 +1,16 @@
+Internal Penetration Test Findings — Customer Portal
+
+Our Q2 penetration test of the customer portal identified three findings
+requiring remediation before the next release cycle.
+
+Finding 1: the password reset endpoint does not rate-limit requests,
+allowing an attacker to enumerate valid customer email addresses.
+Finding 2: session tokens do not expire on password change, meaning a
+compromised session remains valid even after a user resets their
+credentials. Finding 3: the file upload feature on customer profile
+pages accepts executable file types without server-side validation,
+creating a potential remote code execution vector.
+
+Remediation for all three findings is tracked in tickets ENG-4471 through
+ENG-4473 and is targeted for the next sprint. This report should only be
+shared with the engineering leads directly responsible for remediation.

@@ -74,7 +74,7 @@ def _parse_departments(raw: str) -> Any:
 
 def _run_single_question(args, dsn: str) -> None:
     departments = _parse_departments(args.department)
-    result = answer_question(args.index, args.question, top_k=args.top_k, pgvector_dsn=dsn, clearance=args.clearance, departments=departments)
+    result = answer_question(args.index, args.question, top_k=args.top_k, pgvector_dsn=dsn, clearance=args.clearance, departments=departments, by_department=args.by_department)
     print(json.dumps({"result": result, "eval": evaluate_rag(result)}, indent=2))
 
 
@@ -142,6 +142,7 @@ def _run_interactive(args, dsn: str) -> None:
             conversation_history=conversation_history,
             clearance=clearance,
             departments=departments,
+            by_department=args.by_department,
         )
 
         if verbose:
@@ -185,6 +186,14 @@ def main() -> None:
         help="Comma-separated department access for this session, e.g. 'HR,Finance', or 'All' for "
              "unrestricted (default: All). Shared/General content is always visible regardless. "
              "Can also be changed mid-session in --interactive with 'department <Name1,Name2>'.",
+    )
+    parser.add_argument(
+        "--by-department",
+        action="store_true",
+        help="Query real per-department storage (one pgvector table / local index per department) "
+             "instead of one shared table. With this flag, --index must point at the directory "
+             "produced by `index_cli.py --by-department` (containing department_index_manifest.json), "
+             "not a single local_index.json file.",
     )
     args = parser.parse_args()
 

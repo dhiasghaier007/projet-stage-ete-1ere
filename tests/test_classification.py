@@ -39,7 +39,7 @@ class LLMOnlyClassificationTests(unittest.TestCase):
             with patch.dict(sys.modules, {"litellm": fake_litellm}):
                 result = classify_document_litellm("HR policy for remote work", "test.md")
 
-        self.assertEqual(result["classifier"], "litellm")
+        self.assertEqual(result["classifier"], "llm_failed")
         self.assertEqual(result["department"], "UNCLASSIFIED")
         self.assertEqual(result["doc_type"], "UNCLASSIFIED")
         self.assertEqual(result["language"], "UNCLASSIFIED")

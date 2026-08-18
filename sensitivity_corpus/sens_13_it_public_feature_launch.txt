@@ -1,0 +1,14 @@
+Introducing Real-Time Collaboration in the Meridian Platform
+
+We're excited to announce that real-time collaboration is now live for
+all Meridian Platform users. Teams can now co-edit documents
+simultaneously, see live cursors from teammates, and get instant
+notifications when someone comments on their work.
+
+This feature has been in beta for the past two months with select
+customers, and we're thrilled with the feedback. Real-time collaboration
+is available today on all paid plans, with a limited version available
+on the free tier.
+
+Check out our documentation to get started, or reach out to our support
+team with any questions.

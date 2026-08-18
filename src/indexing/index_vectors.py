@@ -251,55 +251,169 @@ def _store_pgvector_records(records: List[Dict[str, Any]], dsn: Optional[str], t
         conn.close()
 
 
-def index_chunks(chunks_file: Path | str, output_dir: Path | str, pgvector_dsn: Optional[str] = None, table_name: str = "rag_chunks") -> Path:
-    chunks_path = Path(chunks_file)
-    output_path = Path(output_dir)
-    output_path.mkdir(parents=True, exist_ok=True)
+def _content_hash(text: str) -> str:
+    """Same normalization/hash as chunking.chunk_hash() — kept as a local
+    fallback so older chunks.jsonl files without a 'content_hash' field
+    (produced before that field existed) still get a usable fingerprint
+    instead of being treated as permanently uncacheable."""
+    normalized = " ".join(text.split()).encode("utf-8")
+    return hashlib.sha256(normalized).hexdigest()
 
+
+_DEFAULT_EMBEDDING_CACHE_PATH = Path("data/manifests/embedding_cache.json")
+
+
+def _load_embedding_cache(cache_path: Path | str = _DEFAULT_EMBEDDING_CACHE_PATH) -> Dict[str, Dict[str, Any]]:
+    """Load the persisted chunk_id -> {content_hash, embedding, source}
+    cache. Missing/corrupt cache is treated as empty rather than fatal —
+    worst case, everything just gets re-embedded once, same as before
+    incremental indexing existed."""
+    path = Path(cache_path)
+    if not path.exists():
+        return {}
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+def _save_embedding_cache(cache: Dict[str, Dict[str, Any]], cache_path: Path | str = _DEFAULT_EMBEDDING_CACHE_PATH) -> None:
+    path = Path(cache_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(cache, indent=2), encoding="utf-8")
+
+
+def _delete_stale_chunks(current_chunk_ids: List[str], document_id_prefixes: List[str], dsn: Optional[str], table_name: str) -> None:
+    """Remove pgvector rows that belong to a document we just re-indexed but
+    whose chunk_id is no longer among its current chunks (e.g. the document
+    got shorter, or re-chunking produced fewer/merged chunks). Upserting
+    alone (ON CONFLICT DO UPDATE) never removes rows, so without this,
+    stale chunks from an old version of a document would linger in
+    pgvector and keep showing up in retrieval forever.
+
+    Scoped to `document_id_prefixes` — the document_ids actually present in
+    this run — so it never touches chunks belonging to documents that
+    weren't part of this indexing pass.
+    """
+    if not document_id_prefixes:
+        return
+    conn = get_pgvector_connection(dsn)
+    if conn is None:
+        return
+    try:
+        with conn.cursor() as cur:
+            # Table may not exist yet on a fresh DB — nothing stale to delete.
+            cur.execute(
+                "SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = %s)",
+                (table_name,),
+            )
+            if not cur.fetchone()[0]:
+                return
+            for prefix in document_id_prefixes:
+                like_pattern = f"{prefix}_c%"
+                if current_chunk_ids:
+                    cur.execute(
+                        f"DELETE FROM {table_name} WHERE chunk_id LIKE %s AND chunk_id != ALL(%s)",
+                        (like_pattern, current_chunk_ids),
+                    )
+                else:
+                    cur.execute(f"DELETE FROM {table_name} WHERE chunk_id LIKE %s", (like_pattern,))
+            conn.commit()
+    finally:
+        conn.close()
+
+
+def _embed_chunk_records(
+    chunk_records: List[Dict[str, Any]],
+    cache: Optional[Dict[str, Dict[str, Any]]] = None,
+    use_cache: bool = True,
+) -> tuple[LocalVectorIndex, List[Dict[str, Any]], int, int, int]:
+    """Shared core: embed a list of already-parsed chunk dicts (from
+    chunks.jsonl) into a LocalVectorIndex + a list of pgvector-ready record
+    dicts. Used by both index_chunks() and index_chunks_by_department().
+
+    Incremental behavior: if `cache` is given and `use_cache` is True, a
+    chunk whose chunk_id is already in the cache AND whose content_hash
+    matches is reused as-is (no embedding call) — this is what makes
+    re-indexing after a small edit cheap instead of re-embedding the whole
+    corpus every time. `cache` is mutated in place with fresh entries so
+    the caller can persist it after all departments/batches are done.
+
+    Returns (index, records, llm_count, fallback_count, reused_count).
+    """
     index = LocalVectorIndex(dim=768)
     records: List[Dict[str, Any]] = []
     llm_count = 0
     fallback_count = 0
-    with chunks_path.open("r", encoding="utf-8") as handle:
-        for line in handle:
-            line = line.strip()
-            if not line:
-                continue
-            record = json.loads(line)
-            metadata = {
-                "department": record.get("department", "General"),
-                "doc_type": record.get("doc_type", "Document"),
-                "sensitivity": record.get("sensitivity", "Public"),
-                "source_file": record.get("source_file", "unknown"),
-                "section": record.get("section", "Document"),
-            }
-            content = record.get("content", "")
+    reused_count = 0
+    if cache is None:
+        cache = {}
+
+    for record in chunk_records:
+        metadata = {
+            "department": record.get("department", "General"),
+            "doc_type": record.get("doc_type", "Document"),
+            "sensitivity": record.get("sensitivity", "Public"),
+            "source_file": record.get("source_file", "unknown"),
+            "section": record.get("section", "Document"),
+        }
+        content = record.get("content", "")
+        chunk_id = record["chunk_id"]
+        content_hash = record.get("content_hash") or _content_hash(content)
+
+        cached_entry = cache.get(chunk_id) if use_cache else None
+        if cached_entry is not None and cached_entry.get("content_hash") == content_hash:
+            vector = cached_entry["embedding"]
+            source = cached_entry.get("embedding_source", "llm")
+            reused_count += 1
+        else:
             vector, source = build_embedding(content, dim=768)
+            cache[chunk_id] = {
+                "content_hash": content_hash,
+                "embedding": vector,
+                "embedding_source": source,
+            }
             if source == "llm":
                 llm_count += 1
             else:
                 fallback_count += 1
-            index.add_chunk(record["chunk_id"], content, metadata)
-            records.append({
-                "chunk_id": record["chunk_id"],
-                "embedding": vector,
-                "content": content,
-                "metadata": metadata,
-                "department": metadata.get("department", "General"),
-                "sensitivity": metadata.get("sensitivity", "Public"),
-                "created_at": record.get("created_at", ""),
-            })
 
-    _store_pgvector_records(records, pgvector_dsn, table_name=table_name)
+        index._ids.append(chunk_id)
+        index._vectors.append(vector)
+        index._payloads.append({"chunk_id": chunk_id, "content": content, "metadata": metadata, "embedding_source": source})
+        records.append({
+            "chunk_id": chunk_id,
+            "embedding": vector,
+            "content": content,
+            "metadata": metadata,
+            "department": metadata.get("department", "General"),
+            "sensitivity": metadata.get("sensitivity", "Public"),
+            "created_at": record.get("created_at", ""),
+        })
+    return index, records, llm_count, fallback_count, reused_count
 
+
+def _report_embedding_stats(llm_count: int, fallback_count: int, label: str = "", reused_count: int = 0) -> None:
+    prefix = f"[{label}] " if label else ""
+    total = llm_count + fallback_count + reused_count
+    if total == 0:
+        print(f"{prefix}ℹ️  No chunks to embed.")
+        return
+    if reused_count:
+        print(f"{prefix}♻️  {reused_count}/{total} chunks unchanged since last index — reused cached embeddings, "
+              f"no re-embedding call made.")
+    newly_embedded = llm_count + fallback_count
+    if newly_embedded == 0:
+        return
     if fallback_count > 0:
-        print(f"⚠️  {fallback_count}/{llm_count + fallback_count} chunks used the hash fallback "
+        print(f"{prefix}⚠️  {fallback_count}/{newly_embedded} newly-embedded chunks used the hash fallback "
               f"(no real embedding model reachable) — retrieval quality on these will be poor. "
               f"Check Ollama/litellm connectivity before trusting this index.")
     else:
-        print(f"✅ All {llm_count} chunks embedded via a real model.")
+        print(f"{prefix}✅ {llm_count} new/changed chunk(s) embedded via a real model.")
 
-    index_file = output_path / "local_index.json"
+
+def _write_local_index_file(index: LocalVectorIndex, llm_count: int, fallback_count: int, index_file: Path) -> Path:
     index_file.write_text(json.dumps({
         "dim": index.dim,
         "ids": index._ids,
@@ -308,3 +422,156 @@ def index_chunks(chunks_file: Path | str, output_dir: Path | str, pgvector_dsn: 
         "embedding_stats": {"llm": llm_count, "hash_fallback": fallback_count},
     }, indent=2), encoding="utf-8")
     return index_file
+
+
+def _read_chunk_records(chunks_path: Path) -> List[Dict[str, Any]]:
+    records = []
+    with chunks_path.open("r", encoding="utf-8") as handle:
+        for line in handle:
+            line = line.strip()
+            if not line:
+                continue
+            records.append(json.loads(line))
+    return records
+
+
+def index_chunks(
+    chunks_file: Path | str,
+    output_dir: Path | str,
+    pgvector_dsn: Optional[str] = None,
+    table_name: str = "rag_chunks",
+    use_cache: bool = True,
+    cache_path: Path | str = _DEFAULT_EMBEDDING_CACHE_PATH,
+) -> Path:
+    """Build ONE combined local index + ONE pgvector table from all chunks,
+    regardless of department. For real per-department storage (the "Two
+    Department Knowledge Bases" spec deliverable), use
+    index_chunks_by_department() instead.
+
+    Incremental by default: chunks whose chunk_id + content_hash already
+    exist in the embedding cache are reused instead of re-embedded, and
+    stale rows for documents present in this run are deleted from pgvector.
+    Pass use_cache=False to force a full re-embed of everything (e.g. after
+    switching embedding models, where old cached vectors are no longer
+    comparable to new ones)."""
+    chunks_path = Path(chunks_file)
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+
+    chunk_records = _read_chunk_records(chunks_path)
+    cache = _load_embedding_cache(cache_path) if use_cache else {}
+    index, records, llm_count, fallback_count, reused_count = _embed_chunk_records(
+        chunk_records, cache=cache, use_cache=use_cache
+    )
+
+    document_ids = sorted({r.get("document_id") for r in chunk_records if r.get("document_id")})
+    current_chunk_ids = [r["chunk_id"] for r in records]
+    _delete_stale_chunks(current_chunk_ids, document_ids, pgvector_dsn, table_name)
+
+    _store_pgvector_records(records, pgvector_dsn, table_name=table_name)
+    _report_embedding_stats(llm_count, fallback_count, reused_count=reused_count)
+    if use_cache:
+        _save_embedding_cache(cache, cache_path)
+
+    index_file = output_path / "local_index.json"
+    return _write_local_index_file(index, llm_count, fallback_count, index_file)
+
+
+def index_chunks_by_department(
+    chunks_file: Path | str,
+    output_dir: Path | str,
+    pgvector_dsn: Optional[str] = None,
+    use_cache: bool = True,
+    cache_path: Path | str = _DEFAULT_EMBEDDING_CACHE_PATH,
+) -> Dict[str, Path]:
+    """Build one local index file AND one pgvector table PER DEPARTMENT —
+    real separate storage/collections, not a shared table filtered by a
+    WHERE clause. This is what "Two Department Knowledge Bases" in the spec
+    actually means; see access_control.department_table_name for how a
+    department name maps to a table name (and why that mapping is
+    deliberately strict).
+
+    Each department gets its own local index file, named
+    "local_index_<department_lower>.json" — NOT a shared "local_index.json"
+    that every department's call would silently overwrite one after
+    another. That overwrite is exactly the kind of bug this project already
+    caught once before (see index_cli's single fixed output filename), so
+    this function is built from the start to avoid it, rather than patched
+    after the fact.
+
+    Returns a dict of {department: index_file_path} for every department
+    that had at least one chunk, so callers (e.g. a manifest writer) know
+    exactly which department indexes were actually produced.
+
+    Incremental by default, same as index_chunks() — see that function's
+    docstring for how the embedding cache and stale-row cleanup work.
+    """
+    from src.retrieval.access_control import department_table_name, CANONICAL_DEPARTMENTS
+
+    chunks_path = Path(chunks_file)
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+
+    chunk_records = _read_chunk_records(chunks_path)
+    cache = _load_embedding_cache(cache_path) if use_cache else {}
+
+    # Group chunks by department BEFORE embedding, so each department's
+    # local index and pgvector table only ever contains that department's
+    # own chunks — no cross-department leakage at the storage layer itself,
+    # on top of the existing query-time department filter.
+    by_department: Dict[str, List[Dict[str, Any]]] = {}
+    unknown_departments: set = set()
+    for record in chunk_records:
+        department = record.get("department", "General")
+        if department not in CANONICAL_DEPARTMENTS:
+            # Don't silently drop or silently dump into "General" — that
+            # would hide a real classification/validation gap. Collect and
+            # report it clearly instead.
+            unknown_departments.add(department)
+            continue
+        by_department.setdefault(department, []).append(record)
+
+    if unknown_departments:
+        print(f"⚠️  {len(unknown_departments)} unrecognized department value(s) skipped entirely "
+              f"(not written to any department index): {sorted(unknown_departments)}. "
+              f"These chunks should have been caught by rule-based validation before reaching "
+              f"indexing — check src/classification/rule_validator.py's needs_review flag.")
+
+    index_files: Dict[str, Path] = {}
+    for department, department_records in sorted(by_department.items()):
+        index, records, llm_count, fallback_count, reused_count = _embed_chunk_records(
+            department_records, cache=cache, use_cache=use_cache
+        )
+
+        table_name = department_table_name(department)
+        document_ids = sorted({r.get("document_id") for r in department_records if r.get("document_id")})
+        current_chunk_ids = [r["chunk_id"] for r in records]
+        _delete_stale_chunks(current_chunk_ids, document_ids, pgvector_dsn, table_name)
+
+        _store_pgvector_records(records, pgvector_dsn, table_name=table_name)
+        _report_embedding_stats(llm_count, fallback_count, label=department, reused_count=reused_count)
+
+        index_file = output_path / f"local_index_{department.lower()}.json"
+        index_files[department] = _write_local_index_file(index, llm_count, fallback_count, index_file)
+        print(f"  [{department}] {len(department_records)} chunks → table '{table_name}', "
+              f"local index '{index_file.name}'")
+
+    # A small manifest so retrieval/dashboard code can discover which
+    # department indexes exist without re-scanning chunks.jsonl itself.
+    manifest_file = output_path / "department_index_manifest.json"
+    manifest_file.write_text(json.dumps({
+        "departments": {
+            department: {
+                "table_name": department_table_name(department),
+                "local_index_file": str(path.name),
+                "chunk_count": len(by_department[department]),
+            }
+            for department, path in index_files.items()
+        },
+        "unknown_departments_skipped": sorted(unknown_departments),
+    }, indent=2), encoding="utf-8")
+
+    if use_cache:
+        _save_embedding_cache(cache, cache_path)
+
+    return index_files

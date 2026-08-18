@@ -1,0 +1,24 @@
+{
+  "source_path": "data/samples/multilingual/test_multilingual_samples/doc_005_general_email_french_arabic.txt",
+  "file_hash": "d264fb9821c7a1706902a2dc90c62f3c8a1b28f04bf02b299439fd31c29bf472",
+  "ingested_at": "2026-08-18T08:21:22.612635+00:00",
+  "origin_filename": "doc_005_general_email_french_arabic.txt",
+  "title": "doc_005_general_email_french_arabic",
+  "classification": {
+    "department": "General",
+    "doc_type": "Email",
+    "language": "FR",
+    "sensitivity": "Internal",
+    "confidence": 1.0,
+    "classifier": "litellm",
+    "llm_model": "gemini/gemini-3.5-flash-lite",
+    "error": "",
+    "access_denied": false
+  },
+  "validation": {
+    "passed": true,
+    "needs_review": false,
+    "violations": []
+  },
+  "classified_at": "2026-08-18T08:22:03.927417+00:00"
+}

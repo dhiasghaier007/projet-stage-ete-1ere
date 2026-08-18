@@ -10,7 +10,7 @@ from src.indexing.index_vectors import build_embedding, get_pgvector_connection
 from src.retrieval.hybrid_search import reciprocal_rank_fusion, _tokenize
 from src.retrieval.access_control import (
     DEFAULT_CLEARANCE, allowed_sensitivity_labels, filter_chunks_by_clearance,
-    ALL_DEPARTMENTS, filter_chunks_by_department,
+    ALL_DEPARTMENTS, filter_chunks_by_department, department_tables_for,
 )
 
 
@@ -40,6 +40,18 @@ def _to_or_tsquery(text: str) -> str:
     """
     tokens = _tokenize(text)
     return " | ".join(tokens) if tokens else ""
+
+
+def _table_exists(conn, table_name: str) -> bool:
+    """Check a table exists before querying it. Needed once storage is
+    per-department: not every department necessarily has an indexed table
+    yet (e.g. a department with zero classified documents so far), and a
+    multi-table query must skip that department gracefully rather than
+    raising a Postgres "relation does not exist" error for the whole
+    request."""
+    with conn.cursor() as cur:
+        cur.execute("SELECT to_regclass(%s) IS NOT NULL", (table_name,))
+        return bool(cur.fetchone()[0])
 
 
 def _semantic_rank_pg(conn, query_vector: List[float], top_k: int, table_name: str, allowed_labels: List[str], department_clause: str, department_params: List[Any]) -> List[str]:
@@ -89,6 +101,7 @@ def hybrid_search_pg(
     table_name: str = "rag_chunks",
     clearance: str = DEFAULT_CLEARANCE,
     departments: Any = ALL_DEPARTMENTS,
+    by_department: bool = False,
 ) -> Optional[Tuple[List[Dict[str, Any]], str]]:
     """Run hybrid search against Postgres. Returns None (not an empty result!)
     if Postgres isn't reachable at all, so callers can distinguish "DB down,
@@ -102,6 +115,19 @@ def hybrid_search_pg(
     redundant filter is applied to the final results below as
     defense-in-depth in case the SQL clauses and the Python-side policies
     (access_control.is_allowed / is_department_allowed) ever drift.
+
+    `by_department=True` switches from the legacy single shared `table_name`
+    to real per-department storage: `departments` is mapped via
+    access_control.department_tables_for() to the actual set of
+    department-scoped tables (e.g. "rag_chunks_hr", "rag_chunks_general"),
+    each is queried independently for its own semantic + lexical rankings,
+    and all resulting ranked lists are fused together with a single
+    reciprocal_rank_fusion() call — reciprocal_rank_fusion already accepts
+    an arbitrary number of ranked lists, so querying N tables instead of 1
+    needs no new fusion logic, just N pairs of ranked lists fed into the
+    same function. Tables that don't exist yet (a department with no
+    indexed chunks) are skipped rather than raising. `table_name` is
+    ignored when `by_department=True`.
     """
     conn = get_pgvector_connection(dsn)
     if conn is None:
@@ -116,13 +142,31 @@ def hybrid_search_pg(
             print("⚠️  Query embedding used the hash fallback even with Postgres reachable — "
                   "semantic ranking will be unreliable.")
 
-        semantic_ids = _semantic_rank_pg(conn, query_vector, candidate_k, table_name, allowed_labels, department_clause, department_params)
-        lexical_ids = _lexical_rank_pg(conn, query, candidate_k, table_name, allowed_labels, department_clause, department_params)
+        tables = department_tables_for(departments) if by_department else [table_name]
+        existing_tables = [t for t in tables if _table_exists(conn, t)]
+        skipped = sorted(set(tables) - set(existing_tables))
+        if skipped:
+            print(f"ℹ️  Skipping {len(skipped)} department table(s) with no index yet: {skipped}")
+        if not existing_tables:
+            return [], "hybrid_rrf_postgres" if not by_department else "hybrid_rrf_postgres_by_department"
 
-        fused_scores = reciprocal_rank_fusion([semantic_ids, lexical_ids], k=rrf_k)
+        semantic_lists: List[List[str]] = []
+        lexical_lists: List[List[str]] = []
+        payloads: Dict[str, Dict[str, Any]] = {}
+        for table in existing_tables:
+            semantic_ids = _semantic_rank_pg(conn, query_vector, candidate_k, table, allowed_labels, department_clause, department_params)
+            lexical_ids = _lexical_rank_pg(conn, query, candidate_k, table, allowed_labels, department_clause, department_params)
+            semantic_lists.append(semantic_ids)
+            lexical_lists.append(lexical_ids)
+            table_payloads = _fetch_payloads_pg(conn, list(set(semantic_ids) | set(lexical_ids)), table)
+            payloads.update(table_payloads)
+
+        fused_scores = reciprocal_rank_fusion(semantic_lists + lexical_lists, k=rrf_k)
         ranked_ids = sorted(fused_scores.keys(), key=lambda cid: fused_scores[cid], reverse=True)[:top_k]
 
-        payloads = _fetch_payloads_pg(conn, ranked_ids, table_name)
+        all_semantic_ids = {cid for ranked in semantic_lists for cid in ranked}
+        all_lexical_ids = {cid for ranked in lexical_lists for cid in ranked}
+
         results = []
         for chunk_id in ranked_ids:
             payload = payloads.get(chunk_id, {"content": "", "metadata": {}})
@@ -131,11 +175,12 @@ def hybrid_search_pg(
                 "rrf_score": round(fused_scores[chunk_id], 6),
                 "content": payload["content"],
                 "metadata": payload["metadata"],
-                "in_semantic_results": chunk_id in semantic_ids,
-                "in_lexical_results": chunk_id in lexical_ids,
+                "in_semantic_results": chunk_id in all_semantic_ids,
+                "in_lexical_results": chunk_id in all_lexical_ids,
             })
         results = filter_chunks_by_clearance(results, clearance)
         results = filter_chunks_by_department(results, departments)
-        return results, "hybrid_rrf_postgres"
+        mode = "hybrid_rrf_postgres_by_department" if by_department else "hybrid_rrf_postgres"
+        return results, mode
     finally:
         conn.close()

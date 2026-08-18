@@ -428,6 +428,36 @@ find information in the documents. Do not invent facts or documents that weren't
     return _SMALLTALK_CANNED_REPLY, "smalltalk_canned", ""
 
 
+def _load_local_index_by_department(index_dir: Path) -> LocalVectorIndex:
+    """Merge every department's local index file (written by
+    index_chunks_by_department, discovered via department_index_manifest.json)
+    into one in-memory LocalVectorIndex. This deliberately reuses the
+    existing, already-tested hybrid_search()/filter_chunks_by_department
+    path for the local fallback rather than reimplementing multi-index
+    fusion a second time for the local (non-Postgres) case — the Postgres
+    path fuses across tables via reciprocal_rank_fusion, the local path
+    fuses by just combining the underlying vectors/payloads before search,
+    since LocalVectorIndex has no per-call table scoping of its own."""
+    manifest_file = index_dir / "department_index_manifest.json"
+    if not manifest_file.exists():
+        raise FileNotFoundError(
+            f"No department_index_manifest.json found in {index_dir} — was this directory built with "
+            f"index_chunks_by_department() (e.g. `index_cli.py --by-department`)? "
+            f"answer_question(by_department=True) expects a directory of per-department index files, "
+            f"not a single local_index.json."
+        )
+    manifest = json.loads(manifest_file.read_text(encoding="utf-8"))
+    combined = LocalVectorIndex(dim=768)
+    for department, info in sorted(manifest.get("departments", {}).items()):
+        department_file = index_dir / info["local_index_file"]
+        payload = json.loads(department_file.read_text(encoding="utf-8"))
+        combined.dim = payload["dim"]
+        combined._ids.extend(payload["ids"])
+        combined._vectors.extend(payload["vectors"])
+        combined._payloads.extend(payload["payloads"])
+    return combined
+
+
 def answer_question(
     index_path: Path | str,
     question: str,
@@ -436,6 +466,7 @@ def answer_question(
     conversation_history: Optional[list[Dict[str, str]]] = None,
     clearance: str = DEFAULT_CLEARANCE,
     departments: Any = ALL_DEPARTMENTS,
+    by_department: bool = False,
 ) -> Dict[str, Any]:
     """Answer `question` using retrieval + LLM generation.
 
@@ -461,6 +492,14 @@ def answer_question(
     clearance, this defaults to unrestricted rather than a narrow default,
     since department isolation is opt-in per caller (see access_control.py
     for why "General"/unlabeled content is always visible regardless).
+
+    `by_department` switches storage from one shared table/index to real
+    per-department collections (see index_chunks_by_department /
+    hybrid_search_pg's by_department flag). When True, `index_path` must
+    point at the OUTPUT DIRECTORY produced by `index_cli.py --by-department`
+    (containing department_index_manifest.json) rather than a single
+    local_index.json file — this only matters for the local fallback path,
+    used when Postgres isn't reachable.
 
     Bare greetings/small talk (see _SMALLTALK_PATTERNS) skip retrieval
     entirely and get a short friendly reply instead — running a document
@@ -489,19 +528,22 @@ def answer_question(
     rewrite_result = rewrite_query_with_history(question, visible_history)
     retrieval_query = rewrite_result["query"]
 
-    pg_result = hybrid_search_pg(retrieval_query, top_k=top_k, dsn=pgvector_dsn, clearance=clearance, departments=departments)
+    pg_result = hybrid_search_pg(retrieval_query, top_k=top_k, dsn=pgvector_dsn, clearance=clearance, departments=departments, by_department=by_department)
     if pg_result is not None:
         results, retrieval_mode = pg_result
     else:
         print("ℹ️  Postgres not reachable (or no DSN configured) — using the local JSON index instead. "
               "This works fine, but won't scale past a small corpus the way Postgres does.")
-        index_file = Path(index_path)
-        payload = json.loads(index_file.read_text(encoding="utf-8"))
-        index = LocalVectorIndex(dim=payload["dim"])
-        for chunk_id, vector, payload_item in zip(payload["ids"], payload["vectors"], payload["payloads"]):
-            index._ids.append(chunk_id)
-            index._vectors.append(vector)
-            index._payloads.append(payload_item)
+        if by_department:
+            index = _load_local_index_by_department(Path(index_path))
+        else:
+            index_file = Path(index_path)
+            payload = json.loads(index_file.read_text(encoding="utf-8"))
+            index = LocalVectorIndex(dim=payload["dim"])
+            for chunk_id, vector, payload_item in zip(payload["ids"], payload["vectors"], payload["payloads"]):
+                index._ids.append(chunk_id)
+                index._vectors.append(vector)
+                index._payloads.append(payload_item)
         results, retrieval_mode = hybrid_search(index, retrieval_query, top_k=top_k, clearance=clearance, departments=departments)
 
     answer_text = ""

@@ -1,0 +1,34 @@
+======================================================================
+CLASSIFICATION ACCURACY — CORPUS EVALUATION
+======================================================================
+Documents evaluated: 20
+Classifier failures (UNCLASSIFIED / llm_failed): 0
+
+Per-field accuracy:
+  department  : 17/20  (85.0%)
+  doc_type    : 9/20  (45.0%)
+  language    : 20/20  (100.0%)
+  sensitivity : 19/20  (95.0%)
+
+Mismatches — doc_type:
+  sens_01_hr_public_wellness.txt                     expected='Announcement'       got='Document'
+  sens_02_hr_internal_onboarding.txt                 expected='Memo'               got='Document'
+  sens_05_finance_public_earnings.txt                expected='Press Release'      got='Report'
+  sens_06_finance_internal_budget.txt                expected='Memo'               got='Email'
+  sens_09_legal_public_compliance.txt                expected='Statement'          got='Document'
+  sens_10_legal_internal_review_process.txt          expected='Memo'               got='Document'
+  sens_13_it_public_feature_launch.txt               expected='Blog Post'          got='Document'
+  sens_14_it_internal_helpdesk_procedure.txt         expected='Procedure'          got='Document'
+  sens_17_general_public_allhands_recap.txt          expected='Announcement'       got='Document'
+  sens_18_general_internal_office_move.txt           expected='Memo'               got='Document'
+  sens_19_general_confidential_partnership.txt       expected='Memo'               got='Document'
+
+Mismatches — department:
+  sens_08_finance_restricted_loan.txt                expected='Finance'            got='Legal'
+  sens_16_it_restricted_dpa.txt                      expected='IT'                 got='Legal'
+  sens_20_general_restricted_vendor_msa.txt          expected='General'            got='Legal'
+
+Mismatches — sensitivity:
+  sens_11_legal_confidential_litigation.txt          expected='Confidential'       got='Restricted'
+
+======================================================================

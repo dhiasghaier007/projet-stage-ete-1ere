@@ -1,0 +1,13 @@
+INTERNAL — IT Helpdesk Standard Operating Procedure
+
+Subject: Ticket Triage and Escalation Guidelines
+
+All incoming helpdesk tickets should be triaged within 2 business hours
+during standard support hours. Priority levels: P1 (system-wide outage)
+— escalate to on-call engineer immediately; P2 (individual user blocked)
+— respond within 4 hours; P3 (general request) — respond within 1
+business day.
+
+Tickets tagged "security" should always be escalated to the security
+team lead regardless of stated priority. Use the internal ticketing
+system's tagging feature consistently so reporting stays accurate.

@@ -1,0 +1,17 @@
+CREDIT AGREEMENT
+
+This Credit Agreement is entered into between Meridian Holdings Inc.
+("Borrower") and First Continental Bank ("Lender"), governing a revolving
+credit facility of up to $5,000,000.
+
+1. FACILITY. Lender agrees to extend a revolving line of credit not to
+   exceed the Facility Amount, subject to the terms herein.
+2. INTEREST RATE. Advances shall bear interest at SOFR plus 2.25% per
+   annum.
+3. COVENANTS. Borrower shall maintain a minimum debt service coverage
+   ratio of 1.25:1.00, tested quarterly.
+4. EVENTS OF DEFAULT. Failure to maintain the covenants above shall
+   constitute an Event of Default under this Agreement.
+
+Executed by authorized representatives of both parties as of the date
+below.

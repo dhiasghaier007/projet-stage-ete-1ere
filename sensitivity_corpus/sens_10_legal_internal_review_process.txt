@@ -1,0 +1,13 @@
+INTERNAL — Legal Department Process Memo
+
+Subject: Updated Contract Review Turnaround Times
+
+Effective immediately, all vendor contracts routed to Legal for review
+will follow the updated SLA: standard contracts under $50,000 in annual
+value, 3 business days; contracts over $50,000 or containing non-standard
+liability terms, 7 business days.
+
+Please submit contracts through the internal legal intake system, not by
+email, so requests can be properly tracked. Rush requests require
+director-level approval. This process applies to all departments
+company-wide.

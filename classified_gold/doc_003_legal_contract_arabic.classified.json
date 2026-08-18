@@ -1,0 +1,24 @@
+{
+  "source_path": "data/samples/multilingual/test_multilingual_samples/doc_003_legal_contract_arabic.txt",
+  "file_hash": "c02e688749d856f484ec3a69ac53455d75e281ab7b34659996709a51c452266e",
+  "ingested_at": "2026-08-18T08:21:22.611616+00:00",
+  "origin_filename": "doc_003_legal_contract_arabic.txt",
+  "title": "doc_003_legal_contract_arabic",
+  "classification": {
+    "department": "Legal",
+    "doc_type": "Contract",
+    "language": "AR",
+    "sensitivity": "Restricted",
+    "confidence": 1.0,
+    "classifier": "litellm",
+    "llm_model": "gemini/gemini-3.5-flash-lite",
+    "error": "",
+    "access_denied": false
+  },
+  "validation": {
+    "passed": true,
+    "needs_review": false,
+    "violations": []
+  },
+  "classified_at": "2026-08-18T08:21:53.377749+00:00"
+}

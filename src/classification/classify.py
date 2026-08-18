@@ -32,6 +32,8 @@ except ImportError:  # pragma: no cover - dependency may be absent
     def load_dotenv() -> bool:
         return False
 
+from src.classification.rule_validator import validate_classification, validate_batch
+
 load_dotenv(dotenv_path=Path(__file__).resolve().parents[2] / ".env", override=True)
 
 # Free-tier Gemini models (e.g. gemini-3.5-flash-lite) are limited to ~15
@@ -113,7 +115,7 @@ def classify_document_litellm(markdown_content: str, filename: str) -> dict:
             "language": "UNCLASSIFIED",
             "sensitivity": "UNCLASSIFIED",
             "confidence": 0.0,
-            "classifier": "litellm",
+            "classifier": "llm_failed",
             "llm_model": "",
             "error": "LiteLLM is not installed",
             "access_denied": False,
@@ -291,7 +293,7 @@ Return exactly this JSON object, with a confidence 0.0-1.0 reflecting how sure y
         "language": "UNCLASSIFIED",
         "sensitivity": "UNCLASSIFIED",
         "confidence": 0.0,
-        "classifier": "litellm",
+        "classifier": "llm_failed",
         "llm_model": last_model or "",
         "error": str(last_error) if last_error else "LLM backend unavailable",
         "access_denied": denied,
@@ -308,6 +310,7 @@ def run(processed_dir: Path, output_dir: Path, metadata_path: Path, limit: int |
     classified_records = []
     failed_count = 0
     access_denied_count = 0
+    needs_review_count = 0
 
     md_files = sorted(processed_dir.glob("*.md"))
     if limit is not None:
@@ -328,9 +331,14 @@ def run(processed_dir: Path, output_dir: Path, metadata_path: Path, limit: int |
             if classification.get("access_denied"):
                 access_denied_count += 1
 
+        validation_result = validate_classification(classification)
+        if validation_result.needs_review:
+            needs_review_count += 1
+
         enriched_meta = {
             **stage1_meta,
             "classification": classification,
+            "validation": validation_result.to_dict(),
             "classified_at": datetime.now(timezone.utc).isoformat(),
         }
 
@@ -355,7 +363,8 @@ def run(processed_dir: Path, output_dir: Path, metadata_path: Path, limit: int |
         classified_records.append(asdict(record))
 
         symbol = "🤖" if classification["classifier"] == "litellm" else "❌"
-        print(f"  {symbol} [{classification['classifier']:12s}] {md_file.name:30s} → {record.department:12s} | {record.doc_type:15s} | {record.sensitivity}")
+        review_flag = "  🚩 NEEDS REVIEW" if validation_result.needs_review else ""
+        print(f"  {symbol} [{classification['classifier']:12s}] {md_file.name:30s} → {record.department:12s} | {record.doc_type:15s} | {record.sensitivity}{review_flag}")
 
         time.sleep(REQUEST_DELAY_SECONDS)
 
@@ -363,6 +372,7 @@ def run(processed_dir: Path, output_dir: Path, metadata_path: Path, limit: int |
         "total_classified": len(classified_records),
         "failed": failed_count,
         "access_denied": access_denied_count,
+        "needs_review": needs_review_count,
         "classifier": "litellm",
         "records": classified_records,
         "processed_at": datetime.now(timezone.utc).isoformat(),
@@ -370,9 +380,14 @@ def run(processed_dir: Path, output_dir: Path, metadata_path: Path, limit: int |
     metadata_path.write_text(json.dumps(summary, indent=2))
 
     print(f"\n✅ Classification run complete. {len(classified_records)} documents processed, "
-          f"{failed_count} failed ({access_denied_count} access-denied).")
+          f"{failed_count} failed ({access_denied_count} access-denied), "
+          f"{needs_review_count} flagged for human review by rule-based validation.")
     if access_denied_count > 0:
         print("🔒 One or more documents failed due to ACCESS DENIED — check your API key / model config.")
+    if needs_review_count > 0:
+        print(f"🚩 {needs_review_count} document(s) failed a validation rule (see 'validation' field in "
+              f"each .classified.json, or run rule_validator.py against {metadata_path} for a full report) "
+              f"— review before these proceed to chunking/indexing.")
 
 
 def main():

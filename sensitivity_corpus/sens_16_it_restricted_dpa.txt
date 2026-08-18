@@ -1,0 +1,18 @@
+DATA PROCESSING AGREEMENT
+
+This Data Processing Agreement ("DPA") supplements the Master Services
+Agreement between Meridian Holdings Inc. ("Controller") and CloudVault
+Systems Inc. ("Processor") and governs the Processor's handling of
+personal data on the Controller's behalf.
+
+1. The Processor shall process personal data only on documented
+   instructions from the Controller, including with regard to transfers
+   of personal data to a third country.
+2. The Processor shall implement appropriate technical and
+   organizational measures to ensure a level of security appropriate to
+   the risk, in accordance with Article 32 of the GDPR.
+3. The Processor shall notify the Controller without undue delay after
+   becoming aware of a personal data breach.
+
+This Agreement is governed by the laws referenced in the Master Services
+Agreement and executed by authorized representatives of both parties.
